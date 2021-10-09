@@ -5,6 +5,7 @@ import org.academiadecodigo.bootcamp65.objects.Destination;
 
 public class Level {
 
+    private LevelType levelType;
     private Barrier[] barriers;
     private Destination destination;
 
