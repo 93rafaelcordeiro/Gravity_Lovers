@@ -1,7 +1,6 @@
 package org.academiadecodigo.bootcamp65.grid;
 
-import org.academiadecodigo.bootcamp65.gfx.lanterna.LanternaGrid;
-import org.academiadecodigo.bootcamp65.gfx.simplegfx.SimpleGfxGrid;
+import org.academiadecodigo.bootcamp65.gfx.SimpleGfxGrid;
 
 /**
  * A factory of different types of grids
@@ -22,7 +21,7 @@ public class GridFactory {
             case SIMPLE_GFX:
                 return new SimpleGfxGrid(cols, rows);
             default:
-                return new LanternaGrid(cols, rows);
+                return new SimpleGfxGrid(cols, rows);
         }
 
     }

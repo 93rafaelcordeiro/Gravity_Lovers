@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp65.gfx.simplegfx;
+package org.academiadecodigo.bootcamp65.gfx;
 
 import org.academiadecodigo.bootcamp65.grid.GridColor;
 import org.academiadecodigo.bootcamp65.grid.GridDirection;

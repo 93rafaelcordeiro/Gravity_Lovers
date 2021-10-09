@@ -1,4 +1,4 @@
-package org.academiadecodigo.bootcamp65.gfx.simplegfx;
+package org.academiadecodigo.bootcamp65.gfx;
 
 import org.academiadecodigo.bootcamp65.grid.Grid;
 import org.academiadecodigo.bootcamp65.grid.position.GridPosition;
@@ -10,7 +10,7 @@ public class SimpleGfxGrid implements Grid {
     public static final int PADDING = 10;
     private int cols;
     private int rows;
-    public static final int CELL_SIZE = 15;
+    public static final int CELL_SIZE = 1;
     private Rectangle background;
     private SimpleGfxGridPosition[] positions;
 
