@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp65.objects;
 
+import org.academiadecodigo.bootcamp65.physics.Boundary;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
@@ -8,20 +9,26 @@ public abstract class GameObject {
     private Vector position;
     private double width;
     private double height;
-    private Rectangle bounds;
+    private Boundary boundary;
+    private Rectangle rectangle;
 
     public GameObject(double x, double y, double width, double height) {
         this.position = new Vector(x, y);
         this.width = width;
         this.height = height;
-        this.bounds = new Rectangle(x, y, width, height);
+        this.boundary = new Boundary(x, y, width, height);
+        this.rectangle = new Rectangle(x, y, width, height);
     }
 
     public GameObject(Vector position, double width, double height) {
         this.position = position;
         this.width = width;
         this.height = height;
-        this.bounds = new Rectangle(position.getX(), position.getY(), width, height);
+        this.boundary = new Boundary(position.getX(), position.getY(), width, height);
+        this.rectangle = new Rectangle(position.getX(), position.getY(), width, height);
+    }
+
+    public GameObject(Vector position, BarrierType barrierType) {
     }
 
     //region Getters and Setters
@@ -49,16 +56,25 @@ public abstract class GameObject {
         this.height = height;
     }
 
-    public Rectangle getBounds() {
-        return bounds;
+    public Boundary getBoundary() {
+        return boundary;
     }
 
-    public void setBounds(Rectangle bounds) {
-        this.bounds = bounds;
+    public void setBoundary(Boundary boundary) {
+        this.boundary = boundary;
     }
+
+    public Rectangle getRectangle() {
+        return rectangle;
+    }
+
+    public void setRectangle(Rectangle rectangle) {
+        this.rectangle = rectangle;
+    }
+
     //endregion
 
     public void show() {
-
+        this.rectangle.fill();
     }
 }
