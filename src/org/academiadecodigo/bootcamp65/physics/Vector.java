@@ -9,6 +9,11 @@ public class Vector {
         this.y = y;
     }
 
+    public Vector(Vector vector) {
+        this.x = vector.getX();
+        this.y = vector.getY();
+    }
+
     //region Getters and Setters
     public double getX() {
         return x;
