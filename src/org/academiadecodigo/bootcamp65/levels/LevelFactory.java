@@ -4,10 +4,10 @@ import org.academiadecodigo.bootcamp65.objects.Barrier;
 
 public class LevelFactory {
 
-    private Barrier[][] levels;
+    private static Barrier[][] levels;
 
 
-    public Level createLevel(int levelNumber) {
+    public static Level createLevel(int levelNumber) {
         return new Level(levels[levelNumber-1]);
     }
 }

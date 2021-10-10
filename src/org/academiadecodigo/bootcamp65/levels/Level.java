@@ -6,10 +6,17 @@ import org.academiadecodigo.bootcamp65.objects.Destination;
 public class Level {
 
     private LevelType levelType;
+
     private Barrier[] barriers;
     private Destination destination;
 
     public Level(Barrier[] barriers) {
         this.barriers = barriers;
+    }
+
+    public void show() {
+        for (Barrier barrier : barriers) {
+
+        }
     }
 }
