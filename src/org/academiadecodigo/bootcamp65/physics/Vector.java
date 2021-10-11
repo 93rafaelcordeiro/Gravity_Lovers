@@ -39,8 +39,14 @@ public class Vector {
     }
 
     public void sub(Vector vector) {
-        this.x += vector.getX();
-        this.y += vector.getY();
+        this.x -= vector.getX();
+        this.y -= vector.getY();
     }
     //endregion
+
+
+    @Override
+    public String toString() {
+        return "x=" + x + ", y=" + y;
+    }
 }

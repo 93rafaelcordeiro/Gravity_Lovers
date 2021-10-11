@@ -36,7 +36,8 @@ public class Boundary {
     }
 
     public void setPosition(Vector position) {
-        this.position = position;
+        this.position.setX(position.getX());
+        this.position.setY(position.getY());
     }
 
     public double getWidth() {

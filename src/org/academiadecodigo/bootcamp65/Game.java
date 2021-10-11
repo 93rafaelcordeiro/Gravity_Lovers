@@ -6,7 +6,6 @@ import org.academiadecodigo.bootcamp65.grid.GridType;
 import org.academiadecodigo.bootcamp65.handler.GameKeyboardHandler;
 import org.academiadecodigo.bootcamp65.levels.Level;
 import org.academiadecodigo.bootcamp65.levels.LevelType;
-import org.academiadecodigo.bootcamp65.objects.Barrier;
 import org.academiadecodigo.bootcamp65.objects.Player;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -19,11 +18,12 @@ public class Game {
     private Grid grid;
     private Level level;
     private Player player;
-    private double gravityPull;
     private Vector gravity;
     private Vector wind;
     private String directionLabel;
     private Text direction;
+
+    private static double gravityPull;
 
     public Game() {
         this.grid = GridFactory.makeGrid(GridType.SIMPLE_GFX, GRID_WIDTH, GRID_HEIGHT);
@@ -39,21 +39,22 @@ public class Game {
         this.gravityPull = .5;
         this.gravity = new Vector(0, this.gravityPull);
 
-        this.level = LevelType.getLevel_1();
+        this.level = LevelType.getLevel_2();
 
         this.player = new Player(50, 550, 30, 30);
+        this.player.setColor(new Color(150,191,255));
 
         this.directionLabel = "↓";
         this.direction = new Text(this.grid.getCols() - 22.5, 32.5, this.directionLabel);
         this.direction.grow(10, 10);
-        this.direction.setColor(Color.WHITE);
+        this.direction.setColor(new Color(159,152,214));
         this.direction.draw();
     }
 
     public void start() throws InterruptedException {
 
         while (true) {
-            System.out.println("Pos: " + this.player.getPosition().getX() + ":" + this.player.getPosition().getY());
+            //System.out.println("Pos: " + this.player.getPosition().getX() + ":" + this.player.getPosition().getY());
             drawLevel();
             drawPlayer();
             applyAcceleration();
@@ -89,7 +90,7 @@ public class Game {
         this.player = player;
     }
 
-    public double getGravityPull() {
+    public static double getGravityPull() {
         return gravityPull;
     }
 

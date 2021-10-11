@@ -7,9 +7,11 @@ public class Level {
 
     private LevelType levelType;
 
+    private Vector startGravity;
     private Vector startPos;
     private Barrier[] barriers;
-    private Vector destination;
+    private Vector endPos;
+    private Barrier objective;
 
     public Level(Barrier[] barriers) {
         this.barriers = barriers;
@@ -23,6 +25,14 @@ public class Level {
         this.levelType = levelType;
     }
 
+    public Vector getStartGravity() {
+        return startGravity;
+    }
+
+    public void setStartGravity(Vector startGravity) {
+        this.startGravity = startGravity;
+    }
+
     public Barrier[] getBarriers() {
         return barriers;
     }
@@ -31,17 +41,34 @@ public class Level {
         this.barriers = barriers;
     }
 
-    public Vector getDestination() {
-        return destination;
+    public Vector getStartPos() {
+        return startPos;
     }
 
-    public void setDestination(Vector destination) {
-        this.destination = destination;
+    public void setStartPos(Vector startPos) {
+        this.startPos = startPos;
+    }
+
+    public Vector getEndPos() {
+        return endPos;
+    }
+
+    public void setEndPos(Vector endPos) {
+        this.endPos = endPos;
+    }
+
+    public Barrier getObjective() {
+        return objective;
+    }
+
+    public void setObjective(Barrier objective) {
+        this.objective = objective;
     }
 
     public void show() {
         for (Barrier barrier : barriers) {
             barrier.show();
         }
+        objective.show();
     }
 }

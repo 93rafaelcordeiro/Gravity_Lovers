@@ -23,6 +23,7 @@ public class GameKeyboardHandler implements KeyboardHandler {
         addKey(KeyboardEvent.KEY_LEFT);
         addKey(KeyboardEvent.KEY_DOWN);
         addKey(KeyboardEvent.KEY_RIGHT);
+        addKey(KeyboardEvent.KEY_R);
     }
 
     @Override
@@ -46,23 +47,29 @@ public class GameKeyboardHandler implements KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_UP:
                 System.out.println("Pressed Up");
-                this.game.setGravity(new Vector(0, -this.game.getGravityPull()));
+                this.game.setGravity(new Vector(0, -Game.getGravityPull()));
                 this.game.getDirection().setText("↑");
                 break;
             case KeyboardEvent.KEY_LEFT:
                 System.out.println("Pressed Left");
-                this.game.setGravity(new Vector(-this.game.getGravityPull(), 0));
+                this.game.setGravity(new Vector(-Game.getGravityPull(), 0));
                 this.game.getDirection().setText("←");
                 break;
             case KeyboardEvent.KEY_DOWN:
                 System.out.println("Pressed Down");
-                this.game.setGravity(new Vector(0, this.game.getGravityPull()));
+                this.game.setGravity(new Vector(0, Game.getGravityPull()));
                 this.game.getDirection().setText("↓");
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 System.out.println("Pressed Right");
-                this.game.setGravity(new Vector(this.game.getGravityPull(), 0));
+                this.game.setGravity(new Vector(Game.getGravityPull(), 0));
                 this.game.getDirection().setText("→");
+                break;
+            case KeyboardEvent.KEY_R:
+                System.out.println("Pressed R");
+                this.game.setGravity(new Vector(0, Game.getGravityPull()));
+                this.game.getDirection().setText("↓");
+                this.game.getPlayer().setPosition(this.game.getLevel().getStartPos());
                 break;
         }
     }

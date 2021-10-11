@@ -2,6 +2,7 @@ package org.academiadecodigo.bootcamp65.objects;
 
 import org.academiadecodigo.bootcamp65.physics.Boundary;
 import org.academiadecodigo.bootcamp65.physics.Vector;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public abstract class GameObject {
@@ -37,7 +38,12 @@ public abstract class GameObject {
     }
 
     public void setPosition(Vector position) {
-        this.position = position;
+        Vector displacement = new Vector(position);
+        displacement.sub(this.position);
+        this.position.setX(position.getX());
+        this.position.setY(position.getY());
+        this.boundary.setPosition(position);
+        this.rectangle.translate(displacement.getX(), displacement.getY());
     }
 
     public double getWidth() {
@@ -70,6 +76,14 @@ public abstract class GameObject {
 
     public void setRectangle(Rectangle rectangle) {
         this.rectangle = rectangle;
+    }
+
+    public void setColor(Color color) {
+        this.rectangle.setColor(color);
+    }
+
+    public Color getColor() {
+        return this.rectangle.getColor();
     }
 
     //endregion

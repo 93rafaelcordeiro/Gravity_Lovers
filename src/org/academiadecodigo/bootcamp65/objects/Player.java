@@ -54,6 +54,9 @@ public class Player extends GameObject {
         newVelocity.add(this.acceleration);
         newPosition.add(newVelocity);
         newBoundary.setPosition(newPosition);
+        if (this.getBoundary().contains(level.getObjective().getBoundary())) {
+            System.out.println("win");
+        }
         for (Barrier barrier : level.getBarriers()) {
             if (newBoundary.contains(barrier.getBoundary())) {
                 if (newPosition.getX() <= barrier.getPosition().getX() + barrier.getWidth() ||
