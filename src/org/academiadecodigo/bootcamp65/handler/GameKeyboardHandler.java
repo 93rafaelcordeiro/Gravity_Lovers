@@ -67,7 +67,7 @@ public class GameKeyboardHandler implements KeyboardHandler {
                 break;
             case KeyboardEvent.KEY_R:
                 System.out.println("Pressed R");
-                this.game.setGravity(new Vector(0, Game.getGravityPull()));
+                this.game.setGravity(new Vector(this.game.getLevel().getStartGravity()));
                 this.game.getDirection().setText("↓");
                 this.game.getPlayer().setPosition(this.game.getLevel().getStartPos());
                 break;

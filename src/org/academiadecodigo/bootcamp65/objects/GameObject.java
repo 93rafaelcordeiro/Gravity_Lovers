@@ -22,7 +22,7 @@ public abstract class GameObject {
     }
 
     public GameObject(Vector position, double width, double height) {
-        this.position = position;
+        this.position = new Vector(position);
         this.width = width;
         this.height = height;
         this.boundary = new Boundary(position.getX(), position.getY(), width, height);

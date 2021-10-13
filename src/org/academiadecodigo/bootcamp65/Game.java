@@ -37,11 +37,12 @@ public class Game {
 
         //level = LevelFactory.createLevel(1);
         this.gravityPull = .5;
-        this.gravity = new Vector(0, this.gravityPull);
 
-        this.level = LevelType.getLevel_2();
+        this.level = LevelType.getLevel_3();
 
-        this.player = new Player(50, 550, 30, 30);
+        this.gravity = new Vector(this.level.getStartGravity());
+
+        this.player = new Player(400,20, 30, 30);
         this.player.setColor(new Color(150,191,255));
 
         this.directionLabel = "↓";
