@@ -88,4 +88,8 @@ public abstract class GameObject {
     public void show() {
         this.rectangle.fill();
     }
+
+    public void delete(){
+        this.rectangle.delete();
+    }
 }

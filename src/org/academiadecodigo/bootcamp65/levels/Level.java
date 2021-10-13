@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp65.levels;
 
 import org.academiadecodigo.bootcamp65.objects.Barrier;
+import org.academiadecodigo.bootcamp65.physics.GravityDirectionType;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 
 public class Level {
@@ -11,7 +12,7 @@ public class Level {
 
     private Vector startPos;
     private Vector endPos;
-    private Vector startGravity;
+    private GravityDirectionType startGravity;
     private Barrier objective;
 
     public Level(Barrier[] barriers) {
@@ -26,11 +27,11 @@ public class Level {
         this.levelType = levelType;
     }
 
-    public Vector getStartGravity() {
+    public GravityDirectionType getStartGravity() {
         return startGravity;
     }
 
-    public void setStartGravity(Vector startGravity) {
+    public void setStartGravity(GravityDirectionType startGravity) {
         this.startGravity = startGravity;
     }
 
@@ -71,5 +72,12 @@ public class Level {
             barrier.show();
         }
         objective.show();
+    }
+
+    public void delete() {
+        for (Barrier barrier : barriers) {
+            barrier.delete();
+        }
+        objective.delete();
     }
 }

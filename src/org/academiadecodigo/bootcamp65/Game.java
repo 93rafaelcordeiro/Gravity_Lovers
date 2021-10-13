@@ -34,38 +34,35 @@ public class Game {
         // Handler
         new GameKeyboardHandler(this);
 
-        grid.init();
+        this.grid.init();
 
-        this.gravityPull = .8;
+        gravityPull = .5;
 
         //level = LevelFactory.createLevel(LevelType.MAIN_MENU);
         this.level = LevelType.getLevel_1();
 
-        this.gravity = new Vector(this.level.getStartGravity());
+        this.gravity = new Vector(this.level.getStartGravity().getGravity());
 
         this.player = new Player(this.level.getStartPos(), 30, 30);
-        this.player.setColor(new Color(150,191,255));
+        this.player.setColor(new Color(150, 191, 255));
 
-        this.directionLabel = "↓";
+        this.directionLabel = this.level.getStartGravity().getLabel();
         this.direction = new Text(this.grid.getCols() - 22.5, 32.5, this.directionLabel);
         this.direction.grow(10, 10);
-        this.direction.setColor(new Color(159,152,214));
+        this.direction.setColor(new Color(159, 152, 214));
         this.direction.draw();
     }
 
     public void start() throws InterruptedException {
 
         while (true) {
-            //System.out.println("Pos: " + this.player.getPosition().getX() + ":" + this.player.getPosition().getY());
             drawLevel();
             drawPlayer();
             applyAcceleration();
             update();
             if (hasWon()) {
                 level = LevelFactory.createLevel(0);
-
             }
-
             Thread.sleep(10);
         }
     }
@@ -157,5 +154,49 @@ public class Game {
 
     public void update() {
         this.player.update(level);
+    }
+
+    public void restart() {
+        this.player.setVelocity(new Vector(0, 0));
+        this.player.setPosition(this.level.getStartPos());
+        this.setGravity(this.level.getStartGravity().getGravity());
+        this.direction.setText(this.level.getStartGravity().getLabel());
+    }
+
+    public void moveUp() {
+        this.player.setVelocity(new Vector(0, 0));
+        this.directionLabel = "↑";
+        this.direction.setText(directionLabel);
+        this.gravity = new Vector(0, -Game.getGravityPull());
+    }
+
+    public void moveLeft() {
+        this.player.setVelocity(new Vector(0, 0));
+        this.directionLabel = "←";
+        this.direction.setText(directionLabel);
+        this.gravity = new Vector(-Game.getGravityPull(), 0);
+    }
+
+    public void moveDown() {
+        this.player.setVelocity(new Vector(0, 0));
+        this.directionLabel = "↓";
+        this.direction.setText(directionLabel);
+        this.gravity = new Vector(0, Game.getGravityPull());
+    }
+
+    public void moveRight() {
+        this.player.setVelocity(new Vector(0, 0));
+        this.directionLabel = "→";
+        this.direction.setText(directionLabel);
+        this.gravity = new Vector(Game.getGravityPull(), 0);
+    }
+
+    public void changeLevel(Level level) {
+        if (level != null) {
+            this.level.delete();
+            this.setLevel(level);
+        }
+        this.drawLevel();
+        this.restart();
     }
 }

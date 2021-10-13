@@ -10,8 +10,6 @@ public class CollisionDetector {
         this.gameObjects = gameObjects;
     }
 
-
-
     public void check(GameObject gameObject) {
 
     }

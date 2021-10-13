@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp65.objects;
 
+import org.academiadecodigo.bootcamp65.Game;
 import org.academiadecodigo.bootcamp65.levels.Level;
 import org.academiadecodigo.bootcamp65.physics.Boundary;
 import org.academiadecodigo.bootcamp65.physics.Vector;
@@ -62,6 +63,10 @@ public class Player extends GameObject {
         }
         for (Barrier barrier : level.getBarriers()) {
             if (newBoundary.contains(barrier.getBoundary())) {
+                if (barrier.isDangerous()) {
+
+                    return;
+                }
                 if (newPosition.getX() < barrier.getPosition().getX() + barrier.getWidth() ||
                         newPosition.getX() + this.getWidth() > barrier.getPosition().getX()) {
                     newVelocity.setX(0);
