@@ -11,5 +11,5 @@ public enum BarrierType {
     TWO_BY_FOUR,
 
     THREE_BY_THREE,
-    THREE_BY_FOUR,
+    THREE_BY_FOUR
 }

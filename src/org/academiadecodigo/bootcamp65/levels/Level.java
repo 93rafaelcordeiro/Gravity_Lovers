@@ -7,10 +7,11 @@ public class Level {
 
     private LevelType levelType;
 
-    private Vector startGravity;
-    private Vector startPos;
     private Barrier[] barriers;
+
+    private Vector startPos;
     private Vector endPos;
+    private Vector startGravity;
     private Barrier objective;
 
     public Level(Barrier[] barriers) {

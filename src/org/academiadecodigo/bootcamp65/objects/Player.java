@@ -17,6 +17,8 @@ public class Player extends GameObject {
 
     public Player(Vector position, double width, double height) {
         super(position, width, height);
+        this.velocity = new Vector(0, 0);
+        this.acceleration = new Vector(0, 0);
     }
 
     //region Getters and Setters and Adders
@@ -55,16 +57,17 @@ public class Player extends GameObject {
         newPosition.add(newVelocity);
         newBoundary.setPosition(newPosition);
         if (this.getBoundary().contains(level.getObjective().getBoundary())) {
+
             System.out.println("win");
         }
         for (Barrier barrier : level.getBarriers()) {
             if (newBoundary.contains(barrier.getBoundary())) {
-                if (newPosition.getX() <= barrier.getPosition().getX() + barrier.getWidth() ||
-                        newPosition.getX() + this.getWidth() >= barrier.getPosition().getX()) {
+                if (newPosition.getX() < barrier.getPosition().getX() + barrier.getWidth() ||
+                        newPosition.getX() + this.getWidth() > barrier.getPosition().getX()) {
                     newVelocity.setX(0);
                 }
-                if (newPosition.getY() <= barrier.getPosition().getY() + barrier.getHeight() ||
-                        newPosition.getY() + this.getHeight() >= barrier.getPosition().getY()) {
+                if (newPosition.getY() < barrier.getPosition().getY() + barrier.getHeight() ||
+                        newPosition.getY() + this.getHeight() >  barrier.getPosition().getY()) {
                     newVelocity.setY(0);
                 }
             }

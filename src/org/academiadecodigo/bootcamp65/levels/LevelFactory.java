@@ -1,14 +1,12 @@
 package org.academiadecodigo.bootcamp65.levels;
 
-import org.academiadecodigo.bootcamp65.objects.Barrier;
-
 public class LevelFactory {
 
-    private static Barrier[][] levels;
+    private static Level[] levels;
 
 
     public static Level createLevel(int levelNumber){
-        return new Level(levels[levelNumber-1]);
+        return levels[levelNumber];
     }
 
     public static Level createLevel(LevelType levelType){

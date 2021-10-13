@@ -5,6 +5,7 @@ import org.academiadecodigo.bootcamp65.grid.GridFactory;
 import org.academiadecodigo.bootcamp65.grid.GridType;
 import org.academiadecodigo.bootcamp65.handler.GameKeyboardHandler;
 import org.academiadecodigo.bootcamp65.levels.Level;
+import org.academiadecodigo.bootcamp65.levels.LevelFactory;
 import org.academiadecodigo.bootcamp65.levels.LevelType;
 import org.academiadecodigo.bootcamp65.objects.Player;
 import org.academiadecodigo.bootcamp65.physics.Vector;
@@ -35,13 +36,14 @@ public class Game {
 
         grid.init();
 
-        //level = LevelFactory.createLevel(1);
-        this.gravityPull = .5;
-        this.gravity = new Vector(0, this.gravityPull);
+        this.gravityPull = .8;
 
-        this.level = LevelType.getLevel_2();
+        //level = LevelFactory.createLevel(LevelType.MAIN_MENU);
+        this.level = LevelType.getLevel_1();
 
-        this.player = new Player(50, 550, 30, 30);
+        this.gravity = new Vector(this.level.getStartGravity());
+
+        this.player = new Player(this.level.getStartPos(), 30, 30);
         this.player.setColor(new Color(150,191,255));
 
         this.directionLabel = "↓";
@@ -59,10 +61,17 @@ public class Game {
             drawPlayer();
             applyAcceleration();
             update();
+            if (hasWon()) {
+                level = LevelFactory.createLevel(0);
 
+            }
 
             Thread.sleep(10);
         }
+    }
+
+    private boolean hasWon() {
+        return false;
     }
 
     //region Getters and Setters

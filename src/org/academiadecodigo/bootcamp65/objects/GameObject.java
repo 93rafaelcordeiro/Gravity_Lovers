@@ -22,14 +22,11 @@ public abstract class GameObject {
     }
 
     public GameObject(Vector position, double width, double height) {
-        this.position = position;
+        this.position = new Vector(position.getX(), position.getY());
         this.width = width;
         this.height = height;
         this.boundary = new Boundary(position.getX(), position.getY(), width, height);
         this.rectangle = new Rectangle(position.getX(), position.getY(), width, height);
-    }
-
-    public GameObject(Vector position, BarrierType barrierType) {
     }
 
     //region Getters and Setters

@@ -36,6 +36,8 @@ public enum LevelType {
                 new Barrier(600, 200, 150, 10),
                 new Barrier(500, 500, 150, 10)
         });
+        level.setLevelType(LevelType.GRAVITY_CONTROL);
+
         for (Barrier barrier : level.getBarriers()) {
             barrier.setColor(new Color(190,152,214));
         }
@@ -46,31 +48,4 @@ public enum LevelType {
         level.getObjective().setColor(new Color(255,150,191));
         return level;
     }
-
-    public static Level getLevel_2() {
-        Level level = new Level(new Barrier[]{
-                // Walls
-                new Barrier(10, 10, Game.GRID_WIDTH, 10),
-                new Barrier(10, Game.GRID_HEIGHT, Game.GRID_WIDTH, 10),
-                new Barrier(10, 10, 10, Game.GRID_HEIGHT),
-                new Barrier(Game.GRID_WIDTH, 10, 10, Game.GRID_HEIGHT),
-                new Barrier(Game.GRID_WIDTH - 50, 10, 10, 50),
-                new Barrier(Game.GRID_WIDTH - 50, 60, 50, 10),
-                // Barriers
-
-                new Barrier(50,50,10,100)
-
-        });
-        for (Barrier barrier : level.getBarriers()) {
-            barrier.setColor(new Color(190,152,214));
-        }
-        level.setStartGravity(new Vector(0, Game.getGravityPull()));
-        level.setStartPos(new Vector(50, 550));
-        level.setEndPos(new Vector(765, 570));
-        level.setObjective(new Barrier(level.getEndPos(), 30, 30));
-        level.getObjective().setColor(new Color(255,150,191));
-        return level;
-    }
-
-
 }
