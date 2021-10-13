@@ -2,6 +2,7 @@ package org.academiadecodigo.bootcamp65.gfx;
 
 import org.academiadecodigo.bootcamp65.grid.Grid;
 import org.academiadecodigo.bootcamp65.grid.position.GridPosition;
+import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 
@@ -25,7 +26,8 @@ public class SimpleGfxGrid implements Grid {
     @Override
     public void init() {
         this.background = new Rectangle(PADDING, PADDING, this.cols * CELL_SIZE, this.rows * CELL_SIZE);
-        this.background.draw();
+        this.background.setColor(new Color(255,235,253));
+        this.background.fill();
     }
 
     /**
@@ -124,8 +126,6 @@ public class SimpleGfxGrid implements Grid {
     public int columnToX(int column) {
         return column * CELL_SIZE + PADDING;
     }
-
-
 
 
 }

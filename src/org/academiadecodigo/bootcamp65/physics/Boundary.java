@@ -24,13 +24,20 @@ public class Boundary {
         this.height = height;
     }
 
+    public Boundary(Boundary boundary) {
+        this.position = new Vector(boundary.getPosition());
+        this.width = boundary.getWidth();
+        this.height = boundary.getHeight();
+    }
+
     //region Getters and Setters
     public Vector getPosition() {
         return position;
     }
 
     public void setPosition(Vector position) {
-        this.position = position;
+        this.position.setX(position.getX());
+        this.position.setY(position.getY());
     }
 
     public double getWidth() {

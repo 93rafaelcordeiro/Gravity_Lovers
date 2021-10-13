@@ -9,6 +9,12 @@ public class Vector {
         this.y = y;
     }
 
+    public Vector(Vector vector) {
+        this.x = vector.getX();
+        this.y = vector.getY();
+    }
+
+    //region Getters and Setters
     public double getX() {
         return x;
     }
@@ -23,5 +29,24 @@ public class Vector {
 
     public void setY(double y) {
         this.y = y;
+    }
+    //endregion
+
+    //region Vector Math
+    public void add(Vector vector) {
+        this.x += vector.getX();
+        this.y += vector.getY();
+    }
+
+    public void sub(Vector vector) {
+        this.x -= vector.getX();
+        this.y -= vector.getY();
+    }
+    //endregion
+
+
+    @Override
+    public String toString() {
+        return "x=" + x + ", y=" + y;
     }
 }
