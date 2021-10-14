@@ -88,6 +88,56 @@ public enum LevelType {
         level.getObjective().setColor(new Color(255,150,191));
         return level;
     }
+    public static Level getLevel_4() {
+        Level level = new Level(new Barrier[]{
+                // Walls
+                new Barrier(10, 10, Game.GRID_WIDTH, 10),
+                new Barrier(10, Game.GRID_HEIGHT, Game.GRID_WIDTH, 10),
+                new Barrier(10, 10, 10, Game.GRID_HEIGHT),
+                new Barrier(Game.GRID_WIDTH, 10, 10, Game.GRID_HEIGHT),
+                new Barrier(Game.GRID_WIDTH - 50, 10, 10, 50),
+                new Barrier(Game.GRID_WIDTH - 50, 60, 50, 10),
+                //Barriers
+                new Barrier(80, 290, 650, 20),
+               new Barrier(730, 280, 10, 40),
+                new Barrier(70, 280, 10, 40),
+                new Barrier(10, 380, 60, 10),
+                new Barrier(10, 500, 60, 10),
+                new Barrier(10, 90, 60, 10),
+                new Barrier(10, 220, 60, 10),
+                new Barrier(180, 338, 10, 225),
+                new Barrier(180, 53, 10, 215),
+                new Barrier(110, 150, 80, 10),
+                new Barrier(110, 450, 80, 10),
+                new Barrier(730, 270, 60, 10),
+                new Barrier(730, 320, 60, 10),
+                new Barrier(730, 370, 10, 230),
+                new Barrier(730, 10, 10, 220),
+                new Barrier(220, 540, 105, 10),
+                new Barrier(360, 540, 342, 10),
+
+                new Barrier(228, 430, 473, 10),
+
+                new Barrier(300, 310, 10, 80),
+                new Barrier(560, 310, 10, 80),
+                new Barrier(410, 350, 10, 80),
+                new Barrier(300, 10, 10, 80),
+                new Barrier(430, 53, 10, 80),
+                new Barrier(560, 10, 10, 80),
+                new Barrier(220, 130, 477  , 10),
+                new Barrier(360, 210, 342, 10),
+                new Barrier(220, 210, 105, 10)
+        });
+        for (Barrier barrier : level.getBarriers()) {
+            barrier.setColor(new Color(190,152,214));
+        }
+        level.setStartGravity(new Vector(0, Game.getGravityPull()));
+        level.setStartPos(new Vector(50, 550));
+        level.setEndPos(new Vector(765, 570));
+        level.setObjective(new Barrier(level.getEndPos(), 30, 30));
+        level.getObjective().setColor(new Color(255,150,191));
+        return level;
+    }
 
 
 }

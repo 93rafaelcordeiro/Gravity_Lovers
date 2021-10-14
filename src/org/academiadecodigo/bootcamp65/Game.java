@@ -39,7 +39,7 @@ public class Game {
         this.gravityPull = .5;
         this.gravity = new Vector(0, this.gravityPull);
 
-        this.level = LevelType.getLevel_2();
+        this.level = LevelType.getLevel_4();
 
         this.player = new Player(50, 50, 30, 30);
         this.player.setPosition(this.level.getStartPos());
