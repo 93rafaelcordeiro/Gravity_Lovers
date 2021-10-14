@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp65.handler;
 
 import org.academiadecodigo.bootcamp65.Game;
+import org.academiadecodigo.bootcamp65.levels.LevelFactory;
 import org.academiadecodigo.bootcamp65.levels.LevelType;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -25,6 +26,7 @@ public class GameKeyboardHandler implements KeyboardHandler {
         addKey(KeyboardEvent.KEY_DOWN);
         addKey(KeyboardEvent.KEY_RIGHT);
         addKey(KeyboardEvent.KEY_R);
+        addKey(KeyboardEvent.KEY_Q);
         addKey(KeyboardEvent.KEY_1);
         addKey(KeyboardEvent.KEY_2);
         addKey(KeyboardEvent.KEY_3);
@@ -37,19 +39,19 @@ public class GameKeyboardHandler implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_W:
                 System.out.println("Pressed W");
-                this.game.getPlayer().addVelocity(new Vector(0, -8));
+                this.game.getPlayer().addVelocity(new Vector(0, -game.getJumpVelocity()));
                 break;
             case KeyboardEvent.KEY_A:
                 System.out.println("Pressed A");
-                this.game.getPlayer().addVelocity(new Vector(-8, 0));
+                this.game.getPlayer().addVelocity(new Vector(-game.getJumpVelocity(), 0));
                 break;
             case KeyboardEvent.KEY_S:
                 System.out.println("Pressed S");
-                this.game.getPlayer().addVelocity(new Vector(0, 8));
+                this.game.getPlayer().addVelocity(new Vector(0, game.getJumpVelocity()));
                 break;
             case KeyboardEvent.KEY_D:
                 System.out.println("Pressed D");
-                this.game.getPlayer().addVelocity(new Vector(8, 0));
+                this.game.getPlayer().addVelocity(new Vector(game.getJumpVelocity(), 0));
                 break;
             case KeyboardEvent.KEY_UP:
                 System.out.println("Pressed Up");
@@ -71,25 +73,30 @@ public class GameKeyboardHandler implements KeyboardHandler {
                 System.out.println("Pressed R");
                 this.game.restart();
                 break;
+            case KeyboardEvent.KEY_Q:
+                System.out.println("Pressed Q");
+                this.game.changeLevel(LevelFactory.createLevel(0));
+                this.game.restart();
+                break;
             case KeyboardEvent.KEY_1:
                 System.out.println("Pressed 1");
-                this.game.changeLevel(LevelType.getLevel_1());
+                this.game.changeLevel(LevelFactory.createLevel(1));
                 break;
             case KeyboardEvent.KEY_2:
                 System.out.println("Pressed 2");
-                this.game.changeLevel(LevelType.getLevel_2());
+                this.game.changeLevel(LevelFactory.createLevel(2));
                 break;
             case KeyboardEvent.KEY_3:
                 System.out.println("Pressed 3");
-                this.game.changeLevel(LevelType.getLevel_3());
+                this.game.changeLevel(LevelFactory.createLevel(3));
                 break;
             case KeyboardEvent.KEY_4:
                 System.out.println("Pressed 4");
-                this.game.changeLevel(LevelType.getLevel_4());
+                this.game.changeLevel(LevelFactory.createLevel(4));
                 break;
             case KeyboardEvent.KEY_5:
                 System.out.println("Pressed 5");
-                this.game.changeLevel(LevelType.getLevel_5());
+                this.game.changeLevel(LevelFactory.createLevel(5));
                 break;
         }
     }
