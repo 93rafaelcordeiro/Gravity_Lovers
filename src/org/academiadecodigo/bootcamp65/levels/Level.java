@@ -4,19 +4,23 @@ import org.academiadecodigo.bootcamp65.objects.Barrier;
 import org.academiadecodigo.bootcamp65.physics.GravityDirectionType;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 
+import java.util.ArrayList;
+
 public class Level {
 
     private LevelType levelType;
 
-    private Barrier[] barriers;
+    private ArrayList<Barrier> barriers;
 
     private Vector startPos;
     private Vector endPos;
     private GravityDirectionType startGravity;
     private Barrier objective;
+    private boolean completed;
 
-    public Level(Barrier[] barriers) {
+    public Level(ArrayList<Barrier> barriers) {
         this.barriers = barriers;
+        completed = false;
     }
 
     public LevelType getLevelType() {
@@ -35,11 +39,11 @@ public class Level {
         this.startGravity = startGravity;
     }
 
-    public Barrier[] getBarriers() {
+    public ArrayList<Barrier> getBarriers() {
         return barriers;
     }
 
-    public void setBarriers(Barrier[] barriers) {
+    public void setBarriers(ArrayList<Barrier> barriers) {
         this.barriers = barriers;
     }
 
@@ -65,6 +69,14 @@ public class Level {
 
     public void setObjective(Barrier objective) {
         this.objective = objective;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
     }
 
     public void show() {
