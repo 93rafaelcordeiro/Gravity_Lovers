@@ -5,6 +5,8 @@ import org.academiadecodigo.bootcamp65.objects.Barrier;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 
+
+
 public enum LevelType {
     MAIN_MENU,
     DEATH_MENU,
@@ -73,6 +75,8 @@ public enum LevelType {
     }
 
     public static Level getLevel_3() {
+
+
         Level level = new Level(new Barrier[]{
                 // Walls
                 new Barrier(10, 10, Game.GRID_WIDTH, 10),
