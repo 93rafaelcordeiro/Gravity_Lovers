@@ -1,11 +1,8 @@
-package org.academiadecodigo.bootcamp65;
+package org.academiadecodigo.bootcamp65.physics;
 
 import org.academiadecodigo.bootcamp65.levels.Level;
-import org.academiadecodigo.bootcamp65.objects.Barrier;
-import org.academiadecodigo.bootcamp65.objects.GameObject;
+import org.academiadecodigo.bootcamp65.objects.Block;
 import org.academiadecodigo.bootcamp65.objects.Player;
-import org.academiadecodigo.bootcamp65.physics.Boundary;
-import org.academiadecodigo.bootcamp65.physics.Vector;
 
 public class CollisionDetector {
 
@@ -26,18 +23,25 @@ public class CollisionDetector {
             level.setCompleted(true);
             System.out.println("win");
         }
-        for (Barrier barrier : level.getBarriers()) {
-            if (newBoundary.contains(barrier.getBoundary())) {
-                if (barrier.isDangerous()) {
+        for (Block requirement : level.getRequirements()) {
+            if (newBoundary.contains(requirement.getBoundary())) {
+                requirement.setDestroyed(true);
+                requirement.delete();
+            }
+        }
+        for (Block block : level.getWalls()) {
+            if (newBoundary.contains(block.getBoundary())) {
+                if (block.isDangerous()) {
                     player.setDead(true);
                     return null;
                 }
-                if (newPosition.getX() < barrier.getPosition().getX() + barrier.getWidth() ||
-                        newPosition.getX() + player.getWidth() > barrier.getPosition().getX()) {
+
+                if (newPosition.getX() < block.getPosition().getX() + block.getWidth() ||
+                        newPosition.getX() + player.getWidth() > block.getPosition().getX()) {
                     newVelocity.setX(0);
                 }
-                if (newPosition.getY() < barrier.getPosition().getY() + barrier.getHeight() ||
-                        newPosition.getY() + player.getHeight() >  barrier.getPosition().getY()) {
+                if (newPosition.getY() < block.getPosition().getY() + block.getHeight() ||
+                        newPosition.getY() + player.getHeight() >  block.getPosition().getY()) {
                     newVelocity.setY(0);
                 }
             }

@@ -4,6 +4,7 @@ import org.academiadecodigo.bootcamp65.handler.GameKeyboardHandler;
 import org.academiadecodigo.bootcamp65.levels.Level;
 import org.academiadecodigo.bootcamp65.levels.LevelFactory;
 import org.academiadecodigo.bootcamp65.objects.Player;
+import org.academiadecodigo.bootcamp65.physics.CollisionDetector;
 import org.academiadecodigo.bootcamp65.physics.GravityDirectionType;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 import org.academiadecodigo.simplegraphics.graphics.Color;
@@ -142,7 +143,10 @@ public class Game {
         this.direction = direction;
     }
 
-    //endregion
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+//endregion
 
     public void drawLevel() {
         this.direction.delete();
@@ -167,8 +171,9 @@ public class Game {
         this.player.getRectangle().setColor(this.player.getColor());
         this.player.setVelocity(new Vector(0, 0));
         this.player.setPosition(this.level.getStartPos());
-        this.setGravity(this.level.getStartGravity().getGravity());
+
         this.direction.setText(this.level.getStartGravity().getLabel());
+        this.setGravity(this.level.getStartGravity().getGravity());
     }
 
     public void moveUp() {
@@ -197,12 +202,11 @@ public class Game {
 
     public void changeLevel(Level level) {
         this.level.delete();
-        if (level != null) {
-            this.setLevel(level);
-        } else {
+        if (level == null) {
             level = LevelFactory.createLevel(1);
-            this.setLevel(level);
         }
+        this.setLevel(level);
+        this.currentLevel = level.getNumber();
         this.collisionDetector.setLevel(this.level);
         this.drawLevel();
         this.restart();

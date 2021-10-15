@@ -32,6 +32,11 @@ public class GameKeyboardHandler implements KeyboardHandler {
         addKey(KeyboardEvent.KEY_3);
         addKey(KeyboardEvent.KEY_4);
         addKey(KeyboardEvent.KEY_5);
+        addKey(KeyboardEvent.KEY_6);
+        addKey(KeyboardEvent.KEY_7);
+        addKey(KeyboardEvent.KEY_8);
+        addKey(KeyboardEvent.KEY_9);
+        addKey(KeyboardEvent.KEY_0);
     }
 
     @Override
@@ -39,39 +44,55 @@ public class GameKeyboardHandler implements KeyboardHandler {
         switch (keyboardEvent.getKey()) {
             case KeyboardEvent.KEY_W:
                 System.out.println("Pressed W");
-                this.game.getPlayer().addVelocity(new Vector(0, -game.getJumpVelocity()));
+                if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    this.game.getPlayer().addVelocity(new Vector(0, -game.getJumpVelocity()));
+                }
                 break;
             case KeyboardEvent.KEY_A:
                 System.out.println("Pressed A");
-                this.game.getPlayer().addVelocity(new Vector(-game.getJumpVelocity(), 0));
+                if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    this.game.getPlayer().addVelocity(new Vector(-game.getJumpVelocity(), 0));
+                }
                 break;
             case KeyboardEvent.KEY_S:
                 System.out.println("Pressed S");
-                this.game.getPlayer().addVelocity(new Vector(0, game.getJumpVelocity()));
+                if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    this.game.getPlayer().addVelocity(new Vector(0, game.getJumpVelocity()));
+                }
                 break;
             case KeyboardEvent.KEY_D:
                 System.out.println("Pressed D");
-                this.game.getPlayer().addVelocity(new Vector(game.getJumpVelocity(), 0));
+                if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    this.game.getPlayer().addVelocity(new Vector(game.getJumpVelocity(), 0));
+                }
                 break;
             case KeyboardEvent.KEY_UP:
                 System.out.println("Pressed Up");
-                this.game.moveUp();
+                if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
+                    this.game.moveUp();
+                }
                 break;
             case KeyboardEvent.KEY_LEFT:
                 System.out.println("Pressed Left");
-                this.game.moveLeft();
+                if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
+                    this.game.moveLeft();
+                }
                 break;
             case KeyboardEvent.KEY_DOWN:
                 System.out.println("Pressed Down");
-                this.game.moveDown();
+                if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
+                    this.game.moveDown();
+                }
                 break;
             case KeyboardEvent.KEY_RIGHT:
                 System.out.println("Pressed Right");
-                this.game.moveRight();
+                if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
+                    this.game.moveRight();
+                }
                 break;
             case KeyboardEvent.KEY_R:
                 System.out.println("Pressed R");
-                this.game.restart();
+                this.game.changeLevel(LevelFactory.createLevel(this.game.getCurrentLevel()));
                 break;
             case KeyboardEvent.KEY_Q:
                 System.out.println("Pressed Q");
@@ -97,6 +118,26 @@ public class GameKeyboardHandler implements KeyboardHandler {
             case KeyboardEvent.KEY_5:
                 System.out.println("Pressed 5");
                 this.game.changeLevel(LevelFactory.createLevel(5));
+                break;
+            case KeyboardEvent.KEY_6:
+                System.out.println("Pressed 6");
+                this.game.changeLevel(LevelFactory.createLevel(6));
+                break;
+            case KeyboardEvent.KEY_7:
+                System.out.println("Pressed 7");
+                this.game.changeLevel(LevelFactory.createLevel(7));
+                break;
+            case KeyboardEvent.KEY_8:
+                System.out.println("Pressed 8");
+                this.game.changeLevel(LevelFactory.createLevel(8));
+                break;
+            case KeyboardEvent.KEY_9:
+                System.out.println("Pressed 9");
+                this.game.changeLevel(LevelFactory.createLevel(9));
+                break;
+            case KeyboardEvent.KEY_0:
+                System.out.println("Pressed 0");
+                this.game.changeLevel(LevelFactory.createLevel(10));
                 break;
         }
     }
