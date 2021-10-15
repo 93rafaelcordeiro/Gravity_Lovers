@@ -28,7 +28,6 @@ public class Game {
     private double jumpVelocity;
 
     public Game() {
-
     }
 
     public void init() {
