@@ -44,6 +44,7 @@ public enum LevelType {
         level.setEndPos(new Vector(765, 570));
         level.setObjective(new Barrier(level.getEndPos(), 30, 30));
         level.getObjective().setColor(new Color(255,150,191));
+
         return level;
     }
 

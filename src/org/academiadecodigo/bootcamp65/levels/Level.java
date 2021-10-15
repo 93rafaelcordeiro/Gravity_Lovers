@@ -18,7 +18,7 @@ public class Level {
     private Barrier objective;
     private boolean completed;
 
-    public Level(ArrayList<Barrier> barriers) {
+    public Level(Barrier[] barriers) {
         this.barriers = barriers;
         completed = false;
     }
@@ -35,7 +35,7 @@ public class Level {
         return startGravity;
     }
 
-    public void setStartGravity(GravityDirectionType startGravity) {
+    public void setStartGravity(Vector startGravity) {
         this.startGravity = startGravity;
     }
 
