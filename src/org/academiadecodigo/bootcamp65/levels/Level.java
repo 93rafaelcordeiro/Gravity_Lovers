@@ -1,20 +1,26 @@
 package org.academiadecodigo.bootcamp65.levels;
 
 import org.academiadecodigo.bootcamp65.objects.Barrier;
+import org.academiadecodigo.bootcamp65.physics.GravityDirectionType;
 import org.academiadecodigo.bootcamp65.physics.Vector;
+
+import java.util.ArrayList;
 
 public class Level {
 
     private LevelType levelType;
 
-    private Vector startGravity;
-    private Vector startPos;
-    private Barrier[] barriers;
-    private Vector endPos;
-    private Barrier objective;
+    private ArrayList<Barrier> barriers;
 
-    public Level(Barrier[] barriers) {
+    private Vector startPos;
+    private Vector endPos;
+    private GravityDirectionType startGravity;
+    private Barrier objective;
+    private boolean completed;
+
+    public Level(ArrayList<Barrier> barriers) {
         this.barriers = barriers;
+        completed = false;
     }
 
     public LevelType getLevelType() {
@@ -25,19 +31,19 @@ public class Level {
         this.levelType = levelType;
     }
 
-    public Vector getStartGravity() {
+    public GravityDirectionType getStartGravity() {
         return startGravity;
     }
 
-    public void setStartGravity(Vector startGravity) {
+    public void setStartGravity(GravityDirectionType startGravity) {
         this.startGravity = startGravity;
     }
 
-    public Barrier[] getBarriers() {
+    public ArrayList<Barrier> getBarriers() {
         return barriers;
     }
 
-    public void setBarriers(Barrier[] barriers) {
+    public void setBarriers(ArrayList<Barrier> barriers) {
         this.barriers = barriers;
     }
 
@@ -65,10 +71,25 @@ public class Level {
         this.objective = objective;
     }
 
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
     public void show() {
         for (Barrier barrier : barriers) {
             barrier.show();
         }
         objective.show();
+    }
+
+    public void delete() {
+        for (Barrier barrier : barriers) {
+            barrier.delete();
+        }
+        objective.delete();
     }
 }

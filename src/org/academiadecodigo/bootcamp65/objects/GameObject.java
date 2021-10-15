@@ -12,6 +12,7 @@ public abstract class GameObject {
     private double height;
     private Boundary boundary;
     private Rectangle rectangle;
+    private Color color;
 
     public GameObject(double x, double y, double width, double height) {
         this.position = new Vector(x, y);
@@ -22,7 +23,7 @@ public abstract class GameObject {
     }
 
     public GameObject(Vector position, double width, double height) {
-        this.position = position;
+        this.position = new Vector(position.getX(), position.getY());
         this.width = width;
         this.height = height;
         this.boundary = new Boundary(position.getX(), position.getY(), width, height);
@@ -76,16 +77,21 @@ public abstract class GameObject {
     }
 
     public void setColor(Color color) {
-        this.rectangle.setColor(color);
+        this.color = color;
     }
 
     public Color getColor() {
-        return this.rectangle.getColor();
+        return this.color;
     }
 
     //endregion
 
     public void show() {
+        this.rectangle.setColor(this.color);
         this.rectangle.fill();
+    }
+
+    public void delete(){
+        this.rectangle.delete();
     }
 }
