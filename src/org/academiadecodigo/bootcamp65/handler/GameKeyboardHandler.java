@@ -12,6 +12,7 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
 import java.io.IOException;
+import java.net.URL;
 
 public class GameKeyboardHandler implements KeyboardHandler {
 
@@ -23,13 +24,14 @@ public class GameKeyboardHandler implements KeyboardHandler {
     private Sound gravitydown;
     private Sound jump;
 
-    public GameKeyboardHandler(Game game) throws IOException, UnsupportedAudioFileException {
-        this.gravityleft = new Sound("resources/portal-phase .wav");
-        this.gravityup = new Sound("resources/portal-phase .wav");
-        this.gravityright = new Sound("resources/portal-phase .wav");
-        this.gravitydown = new Sound("resources/portal-phase .wav");
 
-        this.jump = new Sound("resources/cartoon-jumpwav-6462 (online-audio-converter.com).wav");
+    public GameKeyboardHandler(Game game) throws IOException, UnsupportedAudioFileException {
+        this.gravityleft = new Sound("/resources/portal-phase .wav");
+        this.gravityup = new Sound("/resources/portal-phase .wav");
+        this.gravityright = new Sound("/resources/portal-phase .wav");
+        this.gravitydown = new Sound("/resources/portal-phase .wav");
+        this.jump = new Sound("/resources/cartoon-jumpwav-6462 (online-audio-converter.com).wav");
+
         this.keyboard = new Keyboard(this);
         this.game = game;
         addKey(KeyboardEvent.KEY_W);
@@ -90,7 +92,7 @@ public class GameKeyboardHandler implements KeyboardHandler {
                 System.out.println("Pressed Up");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
                     gravityup.play(true);
-                    this.game.moveUp();
+                    this.game.fallUp();
                 }
 
                 break;
@@ -98,7 +100,7 @@ public class GameKeyboardHandler implements KeyboardHandler {
                 System.out.println("Pressed Left");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
                     gravityleft.play(true);
-                    this.game.moveLeft();
+                    this.game.fallLeft();
                 }
                 break;
             case KeyboardEvent.KEY_DOWN:
@@ -106,7 +108,7 @@ public class GameKeyboardHandler implements KeyboardHandler {
                 System.out.println("Pressed Down");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
                     gravitydown.play(true);
-                    this.game.moveDown();
+                    this.game.fallDown();
                 }
                 break;
             case KeyboardEvent.KEY_RIGHT:
@@ -114,7 +116,7 @@ public class GameKeyboardHandler implements KeyboardHandler {
                 System.out.println("Pressed Right");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
                     gravityright.play(true);
-                    this.game.moveRight();
+                    this.game.fallRight();
                 }
                 break;
             case KeyboardEvent.KEY_R:

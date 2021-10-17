@@ -25,6 +25,7 @@ public class CollisionDetector {
             if (player.getBoundary().contains(objective.getBoundary())) {
                 this.game.getLevel().setCompleted(true);
                 this.game.getLevel().setNextLevelNumber(objective.getNextLevelNumber());
+                game.getWomen().play(true);
             }
         }
         if (this.game.getLevel().getRequirements() != null) {

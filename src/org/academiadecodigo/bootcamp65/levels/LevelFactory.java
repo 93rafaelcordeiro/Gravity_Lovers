@@ -129,7 +129,7 @@ public class LevelFactory {
                 new Block(Game.GRID_WIDTH, 10, 10, Game.GRID_HEIGHT),
                 new Block(Game.GRID_WIDTH - 50, 10, 10, 50),
                 new Block(Game.GRID_WIDTH - 50, 60, 50, 10),
-                //Blocks
+                //Barriers
                 new Block(400, 300, 20, 100),
                 new Block(400, 500, 20, 100),
                 new Block(10, 500, 300, 20),
@@ -165,7 +165,7 @@ public class LevelFactory {
 
         return level;
     }
-    // Completed - Rafa 1 - Regular
+    // Completed - Rafa
     private static Level getLevel_2() {
         Level level = new Level(new ArrayList<Block>(Arrays.asList(
                 // Walls
@@ -175,7 +175,7 @@ public class LevelFactory {
                 new Block(Game.GRID_WIDTH, 10, 10, Game.GRID_HEIGHT),
                 new Block(Game.GRID_WIDTH - 50, 10, 10, 50),
                 new Block(Game.GRID_WIDTH - 50, 60, 50, 10),
-                // Block()s
+                // Barriers
 
                 new Block(100, 10, 20, 130),
                 new Block(10, 180, 80, 20),
@@ -280,43 +280,43 @@ public class LevelFactory {
     // Completed - Rafa 2 - Regular
     private static Level getLevel_4() {
         Level level = new Level(new ArrayList<Block>(Arrays.asList(
-                // Walls
-                new Block(10, 10, Game.GRID_WIDTH, 10),
-                new Block(10, Game.GRID_HEIGHT, Game.GRID_WIDTH, 10),
-                new Block(10, 10, 10, Game.GRID_HEIGHT),
-                new Block(Game.GRID_WIDTH, 10, 10, Game.GRID_HEIGHT),
-                new Block(Game.GRID_WIDTH - 50, 10, 10, 50),
-                new Block(Game.GRID_WIDTH - 50, 60, 50, 10),
-                //Block()s
-                new Block(80, 290, 615, 20),
-                new Block(730, 280, 10, 40),
-                new Block(70, 280, 10, 40),
-                new Block(10, 380, 60, 10),
-                new Block(10, 500, 60, 10),
-                new Block(10, 90, 60, 10),
-                new Block(10, 220, 60, 10),
-                new Block(180, 338, 10, 225),
-                new Block(180, 45, 10, 220),
-                new Block(110, 150, 80, 10),
-                new Block(110, 450, 80, 10),
-                //new Block()(730, 270, 80, 10),
-                new Block(730, 320, 80, 10),
-                new Block(730, 370, 10, 230),
-                new Block(730, 115, 10, 135),
-                new Block(220, 540, 105, 10),
-                new Block(360, 540, 342, 10),
+            // Walls
+            new Block(10, 10, Game.GRID_WIDTH, 10),
+            new Block(10, Game.GRID_HEIGHT, Game.GRID_WIDTH, 10),
+            new Block(10, 10, 10, Game.GRID_HEIGHT),
+            new Block(Game.GRID_WIDTH, 10, 10, Game.GRID_HEIGHT),
+            new Block(Game.GRID_WIDTH - 50, 10, 10, 50),
+            new Block(Game.GRID_WIDTH - 50, 60, 50, 10),
+            //Barriers
+            new Block(80, 290, 615, 20),
+            new Block(730, 280, 10, 40),
+            new Block(70, 280, 10, 40),
+            new Block(10, 380, 60, 10),
+            new Block(10, 500, 60, 10),
+            new Block(10, 90, 60, 10),
+            new Block(10, 220, 60, 10),
+            new Block(180, 338, 10, 225),
+            new Block(180, 45, 10, 220),
+            new Block(110, 150, 80, 10),
+            new Block(110, 450, 80, 10),
+            //new Barrier(730, 270, 80, 10),
+            new Block(730, 320, 80, 10),
+            new Block(730, 370, 10, 230),
+            new Block(730, 115, 10, 135),
+            new Block(220, 540, 105, 10),
+            new Block(360, 540, 342, 10),
 
-                new Block(228, 430, 473, 10),
+            new Block(228, 430, 473, 10),
 
-                new Block(300, 310, 10, 80),
-                new Block(560, 310, 10, 80),
-                new Block(410, 350, 10, 80),
-                new Block(300, 10, 10, 80),
-                new Block(430, 53, 10, 80),
-                new Block(560, 10, 10, 80),
-                new Block(225, 130, 477, 10),
-                new Block(360, 210, 342, 10),
-                new Block(220, 210, 105, 10)
+            new Block(300, 310, 10, 80),
+            new Block(560, 310, 10, 80),
+            new Block(410, 350, 10, 80),
+            new Block(300, 10, 10, 80),
+            new Block(430, 53, 10, 80),
+            new Block(560, 10, 10, 80),
+            new Block(225, 130, 477  , 10),
+            new Block(360, 210, 342, 10),
+            new Block(220, 210, 105, 10)
         )));
         level.setLevelType(LevelType.GRAVITY_CONTROL);
         level.setLevelNumber(4);
@@ -347,7 +347,7 @@ public class LevelFactory {
                 new Block(Game.GRID_WIDTH, 10, 10, Game.GRID_HEIGHT),
                 new Block(Game.GRID_WIDTH - 50, 10, 10, 50),
                 new Block(Game.GRID_WIDTH - 50, 60, 50, 10),
-                //Block()s
+                //Barriers
                 new Block(400, 300, 20, 100),
                 new Block(400, 500, 20, 100),
                 new Block(10, 500, 300, 20),
@@ -393,7 +393,7 @@ public class LevelFactory {
                 new Block(Game.GRID_WIDTH, 10, 10, Game.GRID_HEIGHT),
                 new Block(Game.GRID_WIDTH - 50, 10, 10, 50),
                 new Block(Game.GRID_WIDTH - 50, 60, 50, 10),
-                // Block()s
+                // Barriers
 
                 new Block(100, 10, 20, 130),
                 new Block(10, 180, 80, 20),
@@ -490,7 +490,8 @@ public class LevelFactory {
                 new Block(Game.GRID_WIDTH, 10, 10, Game.GRID_HEIGHT),
                 new Block(Game.GRID_WIDTH - 50, 10, 10, 50),
                 new Block(Game.GRID_WIDTH - 50, 60, 50, 10),
-                // Block()s
+                // Barriers
+
                 new Block(100, 10, 20, 130),
                 new Block(10, 180, 80, 20),
                 new Block(190, 48, 20, 170),
@@ -505,11 +506,10 @@ public class LevelFactory {
                 new Block(630, 248, 130, 130),
                 new Block(600, 480, 200, 20),
                 new Block(650, 500, 20, 20),
-                new Block(650, 560, 20, 40),
-                new Block(650, 520, 20, 40, false, true)
+                new Block(650, 560, 20, 40)
         )), new ArrayList<Block>(Arrays.asList(
-                new Block(440, 550, 30, 30),
-                new Block(680, 390, 30, 30)
+                new Block(0,0,30,30),
+                new Block(40,0,30,30)
         )));
         level.setLevelType(LevelType.GRAVITY_CONTROL);
         level.setLevelNumber(8);

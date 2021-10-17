@@ -57,18 +57,18 @@ public class Sound {
     private void initClip(String path) throws IOException, UnsupportedAudioFileException {
 
         soundURL = Sound.class.getResource(path); //if loading from jar
-        File file=new File(path);
-        AudioInputStream inputStream = AudioSystem.getAudioInputStream(file);
 
+        File file = new File(path);
+        AudioInputStream inputStream = null;
         try {
 
-           /* if (soundURL == null) {
+            if (soundURL == null) {
                 path = path.substring(1);
-                File file = new File(path);
+
                 soundURL = file.toURI().toURL(); //if executing on intellij
             }
 
-            inputStream = AudioSystem.getAudioInputStream(soundURL);*/
+            inputStream =AudioSystem.getAudioInputStream(file);
             clip = AudioSystem.getClip();
             clip.open(inputStream);
 
@@ -77,6 +77,3 @@ public class Sound {
         }
     }
 }
-
-
-

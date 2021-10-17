@@ -11,6 +11,7 @@ public class Block extends GameObject {
 
     public static final Color DEFAULT_BLOCK_COLOR = new Color(255,164,234);
 
+
     public Block(double x, double y, double width, double height) {
         super(x, y, width, height);
         this.setColor(DEFAULT_BLOCK_COLOR);
