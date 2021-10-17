@@ -1,29 +1,37 @@
 package org.academiadecodigo.bootcamp65.levels;
 
 import org.academiadecodigo.bootcamp65.objects.Block;
+import org.academiadecodigo.bootcamp65.objects.Objective;
 import org.academiadecodigo.bootcamp65.physics.GravityDirectionType;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 import org.academiadecodigo.simplegraphics.graphics.Color;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Level {
 
     private LevelType levelType;
     private int levelNumber;
-
-    private ArrayList<Block> walls;
+    private int nextLevelNumber;
 
     private Vector startPos;
     private Vector endPos;
     private GravityDirectionType startGravity;
-    private ArrayList<Block> requirements;
-    private Block objective;
+
+    private List<Block> walls;
+    private List<Block> requirements;
+    private List<Objective> objectives;
+
     private boolean completed;
+    private Picture background;
+
+    public static final Color DEFAULT_BACKGROUND_COLOR = new Color(255, 214, 252);
 
     public Level(ArrayList<Block> walls) {
         this.walls = walls;
-        this.requirements = new ArrayList<>();
+        this.requirements = null;
         this.completed = false;
     }
 
@@ -51,15 +59,15 @@ public class Level {
         this.startGravity = startGravity;
     }
 
-    public ArrayList<Block> getWalls() {
+    public List<Block> getWalls() {
         return walls;
     }
 
-    public ArrayList<Block> getRequirements() {
+    public List<Block> getRequirements() {
         return requirements;
     }
 
-    public void setRequirements(ArrayList<Block> requirements) {
+    public void setRequirements(List<Block> requirements) {
         this.requirements = requirements;
     }
 
@@ -79,12 +87,12 @@ public class Level {
         this.endPos = endPos;
     }
 
-    public Block getObjective() {
-        return objective;
+    public List<Objective> getObjectives() {
+        return objectives;
     }
 
-    public void setObjective(Block objective) {
-        this.objective = objective;
+    public void setObjectives(List<Objective> objectives) {
+        this.objectives = objectives;
     }
 
     public boolean isCompleted() {
@@ -102,33 +110,70 @@ public class Level {
     public void setLevelNumber(int levelNumber) {
         this.levelNumber = levelNumber;
     }
-    //endregion
+
+    public void setBackground(Picture background) {
+        this.background = background;
+    }
+
+    public int getLevelNumber() {
+        return levelNumber;
+    }
+
+    public int getNextLevelNumber() {
+        return nextLevelNumber;
+    }
+
+    public void setNextLevelNumber(int nextLevelNumber) {
+        this.nextLevelNumber = nextLevelNumber;
+    }
+//endregion
 
     public void show() {
+        if (this.background != null) {
+            this.background.draw();
+        }
         for (Block wall : walls) {
             if (wall.isDangerous()) {
                 wall.setColor(new Color(255, 85, 85));
             }
-            wall.show();
-        }
-        for (Block requirement : requirements) {
-            if (requirement.isDestroyed()) {
-                requirement.delete();
+            if (wall.isDestroyable()) {
+                wall.setColor(new Color(255, 234, 166));
+            }
+            if (wall.isDestroyed()) {
+                wall.delete();
                 continue;
             }
-            requirement.setColor(new Color(255, 234, 166));
-            requirement.show();
+            wall.show();
         }
-        objective.show();
+        if (requirements != null) {
+            for (Block requirement : requirements) {
+                if (requirement.isDestroyed()) {
+                    requirement.delete();
+                    continue;
+                }
+                requirement.setColor(new Color(255, 234, 166));
+                requirement.show();
+            }
+        }
+        for (Objective objective : objectives) {
+            objective.show();
+        }
     }
 
     public void delete() {
+        if (this.background != null) {
+            this.background.delete();
+        }
         for (Block block : walls) {
             block.delete();
         }
-        for (Block requirement : requirements) {
-            requirement.delete();
+        if (requirements != null) {
+            for (Block requirement : requirements) {
+                requirement.delete();
+            }
         }
-        objective.delete();
+        for (Objective objective : objectives) {
+            objective.delete();
+        }
     }
 }
