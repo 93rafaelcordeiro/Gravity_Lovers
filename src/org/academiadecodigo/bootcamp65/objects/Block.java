@@ -51,4 +51,15 @@ public class Block extends GameObject {
         return destroyed;
     }
 
+    public void setDangerous(boolean dangerous) {
+        this.dangerous = dangerous;
+    }
+
+    public boolean isDestroyable() {
+        return destroyable;
+    }
+
+    public void setDestroyable(boolean destroyable) {
+        this.destroyable = destroyable;
+    }
 }

@@ -72,6 +72,9 @@ public class Player extends GameObject {
         this.getPosition().add(this.velocity);
         this.getBoundary().setPosition(this.getPosition());
         this.getRectangle().translate(this.velocity.getX(), this.velocity.getY());
+        if (this.getPicture() != null) {
+            this.getPicture().translate(this.velocity.getX(), this.velocity.getY());
+        }
         this.acceleration.setX(0);
         this.acceleration.setY(0);
     }

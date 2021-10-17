@@ -3,12 +3,16 @@ package org.academiadecodigo.bootcamp65;
 import org.academiadecodigo.bootcamp65.handler.GameKeyboardHandler;
 import org.academiadecodigo.bootcamp65.levels.Level;
 import org.academiadecodigo.bootcamp65.levels.LevelFactory;
+import org.academiadecodigo.bootcamp65.objects.Block;
 import org.academiadecodigo.bootcamp65.objects.Player;
 import org.academiadecodigo.bootcamp65.physics.CollisionDetector;
 import org.academiadecodigo.bootcamp65.physics.GravityDirectionType;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+
+import java.util.Iterator;
 
 public class Game {
 
@@ -38,12 +42,13 @@ public class Game {
         this.gravityPull = .5;
         this.jumpVelocity = 8;
 
-        this.currentLevel = 1;
+        this.currentLevel = 0;
         this.level = LevelFactory.createLevel(this.currentLevel);
         this.collisionDetector = new CollisionDetector(this.level);
 
         this.gravity = new Vector(this.level.getStartGravity().getGravity());
         this.player = new Player(this.level.getStartPos(), 30, 30);
+        this.player.setPicture(new Picture(this.level.getStartPos().getX(), this.level.getStartPos().getY(), "resources/baljeet.png"));
 
         this.directionLabel = this.level.getStartGravity().getLabel();
         this.direction = new Text(GRID_WIDTH - 22.5, 32.5, this.directionLabel);
@@ -67,7 +72,7 @@ public class Game {
             update();
             if (hasWon()) {
                 Thread.sleep(1000);
-                changeLevel(LevelFactory.createLevel(currentLevel + 1));
+                changeLevel(LevelFactory.createLevel(this.level.getNextLevelNumber()));
             }
             Thread.sleep(DELAY);
         }
@@ -147,6 +152,32 @@ public class Game {
     }
 //endregion
 
+    //region Gravity Control
+    public void fallUp() {
+        this.player.setVelocity(new Vector(0, 0));
+        this.direction.setText(GravityDirectionType.UP.getLabel());
+        this.gravity = GravityDirectionType.UP.getGravity();
+    }
+
+    public void fallLeft() {
+        this.player.setVelocity(new Vector(0, 0));
+        this.direction.setText(GravityDirectionType.LEFT.getLabel());
+        this.gravity = GravityDirectionType.LEFT.getGravity();
+    }
+
+    public void fallDown() {
+        this.player.setVelocity(new Vector(0, 0));
+        this.direction.setText(GravityDirectionType.DOWN.getLabel());
+        this.gravity = GravityDirectionType.DOWN.getGravity();
+    }
+
+    public void fallRight() {
+        this.player.setVelocity(new Vector(0, 0));
+        this.direction.setText(GravityDirectionType.RIGHT.getLabel());
+        this.gravity = GravityDirectionType.RIGHT.getGravity();
+    }
+    //endregion
+
     public void drawLevel() {
         this.direction.delete();
         this.direction.draw();
@@ -154,6 +185,7 @@ public class Game {
     }
 
     public void drawPlayer() {
+        this.player.delete();
         this.player.show();
     }
 
@@ -162,8 +194,27 @@ public class Game {
     }
 
     public void update() {
-        this.collisionDetector.check(this.player);
         this.player.update(this.collisionDetector.check(this.player));
+        if (level.getRequirements() != null && level.getRequirements().size() != 0) {
+            Iterator<Block> it = level.getRequirements().iterator();
+            while (it.hasNext()) {
+                Block requirement = it.next();
+                if (requirement.isDestroyed()) {
+                    it.remove();
+                }
+            }
+        }
+
+        if (level.getRequirements() != null && level.getRequirements().size() == 0) {
+            Iterator<Block> it = level.getWalls().iterator();
+            while (it.hasNext()) {
+                Block wall = it.next();
+                if (wall.isDestroyable()) {
+                    wall.delete();
+                    it.remove();
+                }
+            }
+        }
     }
 
     public void restart() {
@@ -175,34 +226,10 @@ public class Game {
         this.setGravity(this.level.getStartGravity().getGravity());
     }
 
-    public void moveUp() {
-        this.player.setVelocity(new Vector(0, 0));
-        this.direction.setText(GravityDirectionType.UP.getLabel());
-        this.gravity = GravityDirectionType.UP.getGravity();
-    }
-
-    public void moveLeft() {
-        this.player.setVelocity(new Vector(0, 0));
-        this.direction.setText(GravityDirectionType.LEFT.getLabel());
-        this.gravity = GravityDirectionType.LEFT.getGravity();
-    }
-
-    public void moveDown() {
-        this.player.setVelocity(new Vector(0, 0));
-        this.direction.setText(GravityDirectionType.DOWN.getLabel());
-        this.gravity = GravityDirectionType.DOWN.getGravity();
-    }
-
-    public void moveRight() {
-        this.player.setVelocity(new Vector(0, 0));
-        this.direction.setText(GravityDirectionType.RIGHT.getLabel());
-        this.gravity = GravityDirectionType.RIGHT.getGravity();
-    }
-
     public void changeLevel(Level level) {
         this.level.delete();
         if (level == null) {
-            level = LevelFactory.createLevel(1);
+            level = LevelFactory.createLevel(0);
         }
         this.setLevel(level);
         this.currentLevel = level.getNumber();
