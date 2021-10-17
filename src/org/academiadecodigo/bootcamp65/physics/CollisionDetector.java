@@ -2,6 +2,7 @@ package org.academiadecodigo.bootcamp65.physics;
 
 import org.academiadecodigo.bootcamp65.levels.Level;
 import org.academiadecodigo.bootcamp65.objects.Block;
+import org.academiadecodigo.bootcamp65.objects.Objective;
 import org.academiadecodigo.bootcamp65.objects.Player;
 
 public class CollisionDetector {
@@ -19,14 +20,18 @@ public class CollisionDetector {
         newVelocity.add(player.getAcceleration());
         newPosition.add(newVelocity);
         newBoundary.setPosition(newPosition);
-        if (player.getBoundary().contains(level.getObjective().getBoundary())) {
-            level.setCompleted(true);
-            System.out.println("win");
+        for (Objective objective : level.getObjectives()) {
+            if (player.getBoundary().contains(objective.getBoundary())) {
+                level.setCompleted(true);
+                level.setNextLevelNumber(objective.getNextLevelNumber());
+            }
         }
-        for (Block requirement : level.getRequirements()) {
-            if (newBoundary.contains(requirement.getBoundary())) {
-                requirement.setDestroyed(true);
-                requirement.delete();
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                if (newBoundary.contains(requirement.getBoundary())) {
+                    requirement.setDestroyed(true);
+                    requirement.delete();
+                }
             }
         }
         for (Block block : level.getWalls()) {
@@ -41,7 +46,7 @@ public class CollisionDetector {
                     newVelocity.setX(0);
                 }
                 if (newPosition.getY() < block.getPosition().getY() + block.getHeight() ||
-                        newPosition.getY() + player.getHeight() >  block.getPosition().getY()) {
+                        newPosition.getY() + player.getHeight() > block.getPosition().getY()) {
                     newVelocity.setY(0);
                 }
             }
