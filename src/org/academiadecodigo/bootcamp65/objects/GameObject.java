@@ -4,6 +4,7 @@ import org.academiadecodigo.bootcamp65.physics.Boundary;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
+import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class GameObject {
 
@@ -13,6 +14,7 @@ public abstract class GameObject {
     private Boundary boundary;
     private Rectangle rectangle;
     private Color color;
+    private Picture picture;
 
     public GameObject(double x, double y, double width, double height) {
         this.position = new Vector(x, y);
@@ -42,6 +44,9 @@ public abstract class GameObject {
         this.position.setY(position.getY());
         this.boundary.setPosition(position);
         this.rectangle.translate(displacement.getX(), displacement.getY());
+        if (this.picture != null) {
+            this.picture.translate(displacement.getX(), displacement.getY());
+        }
     }
 
     public double getWidth() {
@@ -84,14 +89,29 @@ public abstract class GameObject {
         return this.color;
     }
 
+    public Picture getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Picture picture) {
+        this.picture = picture;
+    }
     //endregion
 
     public void show() {
+        if (this.picture != null) {
+            this.picture.draw();
+            return;
+        }
         this.rectangle.setColor(this.color);
         this.rectangle.fill();
     }
 
-    public void delete(){
+    public void delete() {
+        if (this.picture != null) {
+            this.picture.delete();
+            //return;
+        }
         this.rectangle.delete();
     }
 }
