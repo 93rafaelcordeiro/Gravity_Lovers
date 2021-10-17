@@ -1,6 +1,7 @@
 package org.academiadecodigo.bootcamp65.handler;
 
 import org.academiadecodigo.bootcamp65.Game;
+import org.academiadecodigo.bootcamp65.Sound;
 import org.academiadecodigo.bootcamp65.levels.LevelFactory;
 import org.academiadecodigo.bootcamp65.levels.LevelType;
 import org.academiadecodigo.bootcamp65.physics.Vector;
@@ -9,12 +10,27 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
 public class GameKeyboardHandler implements KeyboardHandler {
 
     private Keyboard keyboard;
     private Game game;
+    private Sound gravityleft;
+    private Sound gravityup;
+    private Sound gravityright;
+    private Sound gravitydown;
+    private
+    private Sound jump;
 
-    public GameKeyboardHandler(Game game) {
+    public GameKeyboardHandler(Game game) throws IOException, UnsupportedAudioFileException {
+        this.gravityleft = new Sound("resources/portal-phase .wav");
+        this.gravityup = new Sound("resources/portal-phase .wav");
+        this.gravityright = new Sound("resources/portal-phase .wav");
+        this.gravitydown = new Sound("resources/portal-phase .wav");
+
+        this.jump = new Sound("resources/cartoon-jumpwav-6462 (online-audio-converter.com).wav");
         this.keyboard = new Keyboard(this);
         this.game = game;
         addKey(KeyboardEvent.KEY_W);
@@ -45,48 +61,61 @@ public class GameKeyboardHandler implements KeyboardHandler {
             case KeyboardEvent.KEY_W:
                 System.out.println("Pressed W");
                 if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    jump.play(true);
                     this.game.getPlayer().addVelocity(new Vector(0, -game.getJumpVelocity()));
                 }
+
                 break;
             case KeyboardEvent.KEY_A:
                 System.out.println("Pressed A");
                 if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    jump.play(true);
                     this.game.getPlayer().addVelocity(new Vector(-game.getJumpVelocity(), 0));
                 }
                 break;
             case KeyboardEvent.KEY_S:
                 System.out.println("Pressed S");
                 if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    jump.play(true);
                     this.game.getPlayer().addVelocity(new Vector(0, game.getJumpVelocity()));
                 }
                 break;
             case KeyboardEvent.KEY_D:
                 System.out.println("Pressed D");
                 if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    jump.play(true);
                     this.game.getPlayer().addVelocity(new Vector(game.getJumpVelocity(), 0));
                 }
                 break;
             case KeyboardEvent.KEY_UP:
                 System.out.println("Pressed Up");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
+                    gravitySwap.play(true);
                     this.game.moveUp();
                 }
+
                 break;
             case KeyboardEvent.KEY_LEFT:
+                gravitySwap.play(true);
                 System.out.println("Pressed Left");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
+                    gravitySwap.play(true);
                     this.game.moveLeft();
                 }
                 break;
             case KeyboardEvent.KEY_DOWN:
+                gravitySwap.play(true);
                 System.out.println("Pressed Down");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
+                    gravitySwap.play(true);
                     this.game.moveDown();
                 }
                 break;
             case KeyboardEvent.KEY_RIGHT:
+                gravitySwap.play(true);
                 System.out.println("Pressed Right");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
+                    gravitySwap.play(true);
                     this.game.moveRight();
                 }
                 break;

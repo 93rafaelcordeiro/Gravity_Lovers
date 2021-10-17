@@ -3,6 +3,7 @@ package org.academiadecodigo.bootcamp65;
 import org.academiadecodigo.bootcamp65.handler.GameKeyboardHandler;
 import org.academiadecodigo.bootcamp65.levels.Level;
 import org.academiadecodigo.bootcamp65.levels.LevelFactory;
+
 import org.academiadecodigo.bootcamp65.objects.Player;
 import org.academiadecodigo.bootcamp65.physics.CollisionDetector;
 import org.academiadecodigo.bootcamp65.physics.GravityDirectionType;
@@ -10,13 +11,26 @@ import org.academiadecodigo.bootcamp65.physics.Vector;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
+import javax.sound.midi.Instrument;
+import javax.sound.midi.Patch;
+import javax.sound.midi.Soundbank;
+import javax.sound.midi.SoundbankResource;
+import javax.sound.sampled.*;
+import java.io.IOException;
+import java.net.URL;
+
 public class Game {
+
+    private Sound clip;
+     private boolean fromstart;
+     private URL url;
 
     public static final int GRID_WIDTH = 800;
     public static final int GRID_HEIGHT = 600;
     public static final int DELAY = 10;
     private Level level;
     private Player player;
+
     private Vector gravity;
     private Vector wind;
     private String directionLabel;
@@ -27,10 +41,17 @@ public class Game {
     private static double gravityPull;
     private double jumpVelocity;
 
-    public Game() {
-    }
+    public Game() throws IOException, UnsupportedAudioFileException {
+    this.clip=new Sound("resources/epic-strings.wav");
+    this.fromstart=true;
 
-    public void init() {
+
+
+
+   }
+
+
+    public void init() throws IOException, UnsupportedAudioFileException {
         // Handler
         new GameKeyboardHandler(this);
 
@@ -43,7 +64,7 @@ public class Game {
         this.collisionDetector = new CollisionDetector(this.level);
 
         this.gravity = new Vector(this.level.getStartGravity().getGravity());
-        this.player = new Player(this.level.getStartPos(), 30, 30);
+        this.player = new Player(this.level.getStartPos(), 30, 30,"resources/Gustavo.png");
 
         this.directionLabel = this.level.getStartGravity().getLabel();
         this.direction = new Text(GRID_WIDTH - 22.5, 32.5, this.directionLabel);
@@ -54,15 +75,22 @@ public class Game {
 
     public void start() throws InterruptedException {
 
+        clip.play(fromstart);
+        clip.setLoop(1000);
+
+
+
         while (true) {
             if (this.player.isDead()) {
                 player.getRectangle().setColor(new Color(213, 35, 47));
+                drawPlayer();
                 this.player.setDead(false);
                 Thread.sleep(500);
                 restart();
             }
             drawLevel();
             drawPlayer();
+
             applyAcceleration();
             update();
             if (hasWon()) {
@@ -87,10 +115,12 @@ public class Game {
     }
 
     public Player getPlayer() {
+
         return player;
     }
 
     public void setPlayer(Player player) {
+
         this.player = player;
     }
 
@@ -155,6 +185,9 @@ public class Game {
 
     public void drawPlayer() {
         this.player.show();
+
+
+
     }
 
     public void applyAcceleration() {
@@ -168,8 +201,10 @@ public class Game {
 
     public void restart() {
         this.player.getRectangle().setColor(this.player.getColor());
+        //this.player.getPic().draw();
         this.player.setVelocity(new Vector(0, 0));
         this.player.setPosition(this.level.getStartPos());
+
 
         this.direction.setText(this.level.getStartGravity().getLabel());
         this.setGravity(this.level.getStartGravity().getGravity());
