@@ -21,7 +21,6 @@ public class GameKeyboardHandler implements KeyboardHandler {
     private Sound gravityup;
     private Sound gravityright;
     private Sound gravitydown;
-    private
     private Sound jump;
 
     public GameKeyboardHandler(Game game) throws IOException, UnsupportedAudioFileException {
@@ -90,32 +89,31 @@ public class GameKeyboardHandler implements KeyboardHandler {
             case KeyboardEvent.KEY_UP:
                 System.out.println("Pressed Up");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
-                    gravitySwap.play(true);
+                    gravityup.play(true);
                     this.game.moveUp();
                 }
 
                 break;
             case KeyboardEvent.KEY_LEFT:
-                gravitySwap.play(true);
                 System.out.println("Pressed Left");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
-                    gravitySwap.play(true);
+                    gravityleft.play(true);
                     this.game.moveLeft();
                 }
                 break;
             case KeyboardEvent.KEY_DOWN:
-                gravitySwap.play(true);
+
                 System.out.println("Pressed Down");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
-                    gravitySwap.play(true);
+                    gravitydown.play(true);
                     this.game.moveDown();
                 }
                 break;
             case KeyboardEvent.KEY_RIGHT:
-                gravitySwap.play(true);
+
                 System.out.println("Pressed Right");
                 if (this.game.getLevel().getLevelType() != LevelType.REGULAR_MOVEMENT) {
-                    gravitySwap.play(true);
+                    gravityright.play(true);
                     this.game.moveRight();
                 }
                 break;
