@@ -9,6 +9,8 @@ public class Player extends GameObject {
     private Vector acceleration;
     private boolean dead;
 
+    private boolean jumping;
+
     public static final Color DEFAULT_PLAYER_COLOR = new Color(150, 191, 255);
 
     public Player(double x, double y, double width, double height) {
@@ -17,6 +19,7 @@ public class Player extends GameObject {
         this.acceleration = new Vector(0, 0);
         this.setColor(DEFAULT_PLAYER_COLOR);
         this.dead = false;
+        this.jumping = false;
     }
 
     public Player(Vector position, double width, double height) {
@@ -25,6 +28,7 @@ public class Player extends GameObject {
         this.acceleration = new Vector(0, 0);
         this.setColor(DEFAULT_PLAYER_COLOR);
         this.dead = false;
+        this.jumping = false;
     }
 
     //region Getters and Setters and Adders
@@ -62,7 +66,14 @@ public class Player extends GameObject {
         this.dead = dead;
     }
 
-    //endregion
+    public boolean isJumping() {
+        return jumping;
+    }
+
+    public void setJumping(boolean jumping) {
+        this.jumping = jumping;
+    }
+//endregion
 
     public void update(Vector velocity) {
         if (velocity == null) {

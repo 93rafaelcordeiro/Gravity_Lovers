@@ -1,5 +1,6 @@
 package org.academiadecodigo.bootcamp65.physics;
 
+import org.academiadecodigo.bootcamp65.Game;
 import org.academiadecodigo.bootcamp65.levels.Level;
 import org.academiadecodigo.bootcamp65.objects.Block;
 import org.academiadecodigo.bootcamp65.objects.Objective;
@@ -7,10 +8,10 @@ import org.academiadecodigo.bootcamp65.objects.Player;
 
 public class CollisionDetector {
 
-    private Level level;
+    private Game game;
 
-    public CollisionDetector(Level level) {
-        this.level = level;
+    public CollisionDetector(Game game) {
+        this.game = game;
     }
 
     public Vector check(Player player) {
@@ -20,41 +21,38 @@ public class CollisionDetector {
         newVelocity.add(player.getAcceleration());
         newPosition.add(newVelocity);
         newBoundary.setPosition(newPosition);
-        for (Objective objective : level.getObjectives()) {
+        for (Objective objective : this.game.getLevel().getObjectives()) {
             if (player.getBoundary().contains(objective.getBoundary())) {
-                level.setCompleted(true);
-                level.setNextLevelNumber(objective.getNextLevelNumber());
+                this.game.getLevel().setCompleted(true);
+                this.game.getLevel().setNextLevelNumber(objective.getNextLevelNumber());
             }
         }
-        if (level.getRequirements() != null) {
-            for (Block requirement : level.getRequirements()) {
+        if (this.game.getLevel().getRequirements() != null) {
+            for (Block requirement : this.game.getLevel().getRequirements()) {
                 if (newBoundary.contains(requirement.getBoundary())) {
                     requirement.setDestroyed(true);
                     requirement.delete();
                 }
             }
         }
-        for (Block block : level.getWalls()) {
+        for (Block block : this.game.getLevel().getWalls()) {
             if (newBoundary.contains(block.getBoundary())) {
+                player.setJumping(false);
                 if (block.isDangerous()) {
                     player.setDead(true);
                     return null;
                 }
 
-                if (newPosition.getX() < block.getPosition().getX() + block.getWidth() ||
-                        newPosition.getX() + player.getWidth() > block.getPosition().getX()) {
+                if ((newPosition.getX() < block.getPosition().getX() + block.getWidth() ||
+                    newPosition.getX() + player.getWidth() > block.getPosition().getX())) {
                     newVelocity.setX(0);
                 }
-                if (newPosition.getY() < block.getPosition().getY() + block.getHeight() ||
-                        newPosition.getY() + player.getHeight() > block.getPosition().getY()) {
+                if ((newPosition.getY() < block.getPosition().getY() + block.getHeight() ||
+                    newPosition.getY() + player.getHeight() > block.getPosition().getY())) {
                     newVelocity.setY(0);
                 }
             }
         }
         return newVelocity;
-    }
-
-    public void setLevel(Level level) {
-        this.level = level;
     }
 }

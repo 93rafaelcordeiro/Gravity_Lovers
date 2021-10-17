@@ -3,6 +3,7 @@ package org.academiadecodigo.bootcamp65.handler;
 import org.academiadecodigo.bootcamp65.Game;
 import org.academiadecodigo.bootcamp65.levels.LevelFactory;
 import org.academiadecodigo.bootcamp65.levels.LevelType;
+import org.academiadecodigo.bootcamp65.physics.GravityDirectionType;
 import org.academiadecodigo.bootcamp65.physics.Vector;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -45,25 +46,37 @@ public class GameKeyboardHandler implements KeyboardHandler {
             case KeyboardEvent.KEY_W:
                 //System.out.println("Pressed W");
                 if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
-                    this.game.getPlayer().addVelocity(new Vector(0, -game.getJumpVelocity()));
+                    if (!this.game.getGravity().equals(GravityDirectionType.DOWN.getGravity()) || !this.game.getPlayer().isJumping()) {
+                        this.game.getPlayer().setJumping(true);
+                        this.game.getPlayer().addVelocity(new Vector(0, -game.getJumpVelocity()));
+                    }
                 }
                 break;
             case KeyboardEvent.KEY_A:
                 //System.out.println("Pressed A");
                 if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
-                    this.game.getPlayer().addVelocity(new Vector(-game.getJumpVelocity(), 0));
+                    if (!this.game.getGravity().equals(GravityDirectionType.RIGHT.getGravity()) || !this.game.getPlayer().isJumping()) {
+                        this.game.getPlayer().setJumping(true);
+                        this.game.getPlayer().addVelocity(new Vector(-game.getJumpVelocity(), 0));
+                    }
                 }
                 break;
             case KeyboardEvent.KEY_S:
                 //System.out.println("Pressed S");
                 if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    if (!this.game.getGravity().equals(GravityDirectionType.UP.getGravity()) || !this.game.getPlayer().isJumping()) {
+                        this.game.getPlayer().setJumping(true);
                     this.game.getPlayer().addVelocity(new Vector(0, game.getJumpVelocity()));
+                    }
                 }
                 break;
             case KeyboardEvent.KEY_D:
                 //System.out.println("Pressed D");
                 if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
-                    this.game.getPlayer().addVelocity(new Vector(game.getJumpVelocity(), 0));
+                    if (!this.game.getGravity().equals(GravityDirectionType.LEFT.getGravity()) || !this.game.getPlayer().isJumping()) {
+                        this.game.getPlayer().setJumping(true);
+                        this.game.getPlayer().addVelocity(new Vector(game.getJumpVelocity(), 0));
+                    }
                 }
                 break;
             case KeyboardEvent.KEY_UP:
@@ -98,7 +111,7 @@ public class GameKeyboardHandler implements KeyboardHandler {
                 //System.out.println("Pressed Q");
                 this.game.changeLevel(LevelFactory.createLevel(0));
                 this.game.restart();
-                break;
+                break;/*
             case KeyboardEvent.KEY_1:
                 //System.out.println("Pressed 1");
                 this.game.changeLevel(LevelFactory.createLevel(1));
@@ -138,12 +151,46 @@ public class GameKeyboardHandler implements KeyboardHandler {
             case KeyboardEvent.KEY_0:
                 //System.out.println("Pressed 0");
                 this.game.changeLevel(LevelFactory.createLevel(10));
-                break;
+                break;/**/
         }
     }
 
     @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
+    public void keyReleased(KeyboardEvent keyboardEvent) {/*
+        switch (keyboardEvent.getKey()) {
+            case KeyboardEvent.KEY_W:
+            //System.out.println("Pressed W");
+            if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                if (!this.game.getGravity().equals(GravityDirectionType.DOWN.getGravity()) || !this.game.getPlayer().isJumping()) {
+                    this.game.getPlayer().addVelocity(new Vector(0, game.getJumpVelocity()));
+                }
+            }
+            break;
+            case KeyboardEvent.KEY_A:
+                //System.out.println("Pressed A");
+                if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    if (!this.game.getGravity().equals(GravityDirectionType.RIGHT.getGravity()) || !this.game.getPlayer().isJumping()) {
+                        this.game.getPlayer().addVelocity(new Vector(game.getJumpVelocity(), 0));
+                    }
+                }
+                break;
+            case KeyboardEvent.KEY_S:
+                //System.out.println("Pressed S");
+                if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    if (!this.game.getGravity().equals(GravityDirectionType.UP.getGravity()) || !this.game.getPlayer().isJumping()) {
+                        this.game.getPlayer().addVelocity(new Vector(0, -game.getJumpVelocity()));
+                    }
+                }
+                break;
+            case KeyboardEvent.KEY_D:
+                //System.out.println("Pressed D");
+                if (this.game.getLevel().getLevelType() != LevelType.GRAVITY_CONTROL) {
+                    if (!this.game.getGravity().equals(GravityDirectionType.LEFT.getGravity()) || !this.game.getPlayer().isJumping()) {
+                        this.game.getPlayer().addVelocity(new Vector(-game.getJumpVelocity(), 0));
+                    }
+                }
+                break;
+        }*/
     }
 
     //region Add key
