@@ -44,7 +44,7 @@ public class Game {
 
         this.currentLevel = 0;
         this.level = LevelFactory.createLevel(this.currentLevel);
-        this.collisionDetector = new CollisionDetector(this.level);
+        this.collisionDetector = new CollisionDetector(this);
 
         this.gravity = new Vector(this.level.getStartGravity().getGravity());
         this.player = new Player(this.level.getStartPos(), 30, 30);
@@ -154,25 +154,25 @@ public class Game {
 
     //region Gravity Control
     public void fallUp() {
-        this.player.setVelocity(new Vector(0, 0));
+        //this.player.setVelocity(new Vector(0, 0));
         this.direction.setText(GravityDirectionType.UP.getLabel());
         this.gravity = GravityDirectionType.UP.getGravity();
     }
 
     public void fallLeft() {
-        this.player.setVelocity(new Vector(0, 0));
+        //this.player.setVelocity(new Vector(0, 0));
         this.direction.setText(GravityDirectionType.LEFT.getLabel());
         this.gravity = GravityDirectionType.LEFT.getGravity();
     }
 
     public void fallDown() {
-        this.player.setVelocity(new Vector(0, 0));
+        //this.player.setVelocity(new Vector(0, 0));
         this.direction.setText(GravityDirectionType.DOWN.getLabel());
         this.gravity = GravityDirectionType.DOWN.getGravity();
     }
 
     public void fallRight() {
-        this.player.setVelocity(new Vector(0, 0));
+        //this.player.setVelocity(new Vector(0, 0));
         this.direction.setText(GravityDirectionType.RIGHT.getLabel());
         this.gravity = GravityDirectionType.RIGHT.getGravity();
     }
@@ -233,7 +233,6 @@ public class Game {
         }
         this.setLevel(level);
         this.currentLevel = level.getNumber();
-        this.collisionDetector.setLevel(this.level);
         this.drawLevel();
         this.restart();
     }
