@@ -9,11 +9,13 @@ public class Player extends GameObject {
     private Vector acceleration;
     private boolean dead;
 
+    public static final Color DEFAULT_PLAYER_COLOR = new Color(150, 191, 255);
+
     public Player(double x, double y, double width, double height) {
         super(x, y, width, height);
         this.velocity = new Vector(0, 0);
         this.acceleration = new Vector(0, 0);
-        this.setColor(new Color(150, 191, 255));
+        this.setColor(DEFAULT_PLAYER_COLOR);
         this.dead = false;
     }
 
@@ -21,7 +23,7 @@ public class Player extends GameObject {
         super(position, width, height);
         this.velocity = new Vector(0, 0);
         this.acceleration = new Vector(0, 0);
-        this.setColor(new Color(150, 191, 255));
+        this.setColor(DEFAULT_PLAYER_COLOR);
         this.dead = false;
     }
 
