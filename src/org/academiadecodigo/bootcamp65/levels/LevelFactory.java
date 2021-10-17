@@ -57,7 +57,7 @@ public class LevelFactory {
         )));
         level.setLevelType(LevelType.MAIN_MENU);
         level.setLevelNumber(0);
-        level.setBackground(new Picture(10,10,"resources/main-menu.png"));
+        level.setBackground(new Picture(10,10,"resources/leaderboard-template.png"));
 
         level.setStartGravity(GravityDirectionType.DOWN);
         level.setStartPos(new Vector(50, 550));
@@ -108,13 +108,14 @@ public class LevelFactory {
 
         level.setObjectives(new ArrayList<Objective>(Arrays.asList(
                 new Objective(level.getEndPos(), 30, 30, 1),
-                new Objective(640, 490, 30,30, -1)
+                new Objective(650, 490, 30,30, -1)
         )));
 
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
         }
         level.getObjectives().get(0).setPicture(new Picture(level.getObjectives().get(0).getPosition().getX(), level.getObjectives().get(0).getPosition().getY(), "resources/baljeeta.png"));
+        level.getObjectives().get(1).setPicture(new Picture(level.getObjectives().get(1).getPosition().getX(), level.getObjectives().get(1).getPosition().getY(), "resources/highscores.png"));
 
         return level;
     }
