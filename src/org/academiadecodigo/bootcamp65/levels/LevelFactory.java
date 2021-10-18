@@ -38,7 +38,15 @@ public class LevelFactory {
             case 9:
                 return LevelFactory.getLevel_9();
             case 10:
-                return LevelFactory.getLevel_10();
+                return LevelFactory.getLevel_10();/*
+            case 11:
+                return LevelFactory.getLevel_11();
+            case 12:
+                return LevelFactory.getLevel_12();
+            case 13:
+                return LevelFactory.getLevel_13();
+            case 14:
+                return LevelFactory.getLevel_14();*/
             default:
                 return LevelFactory.getMenuLevel();
         }
@@ -66,6 +74,12 @@ public class LevelFactory {
         level.setObjectives(new ArrayList<Objective>(Arrays.asList(
                 new Objective(level.getEndPos(), 30, 30, 0)
         )));
+
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
 
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
@@ -110,6 +124,12 @@ public class LevelFactory {
                 new Objective(level.getEndPos(), 30, 30, 1),
                 new Objective(650, 490, 30,30, -1)
         )));
+
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
 
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
@@ -158,6 +178,12 @@ public class LevelFactory {
                 new Objective(level.getEndPos(), 30, 30, 2)
         )));
 
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
+
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
         }
@@ -204,6 +230,12 @@ public class LevelFactory {
         level.setObjectives(new ArrayList<Objective>(Arrays.asList(
                 new Objective(level.getEndPos(), 30, 30, 3)
         )));
+
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
 
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
@@ -270,6 +302,12 @@ public class LevelFactory {
                 new Objective(level.getEndPos(), 30, 30, 4)
         )));
 
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
+
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
         }
@@ -330,6 +368,12 @@ public class LevelFactory {
                 new Objective(level.getEndPos(), 30, 30, 5)
         )));
 
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
+
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
         }
@@ -375,6 +419,12 @@ public class LevelFactory {
         level.setObjectives(new ArrayList<Objective>(Arrays.asList(
                 new Objective(level.getEndPos(), 30, 30, 6)
         )));
+
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
 
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
@@ -422,6 +472,12 @@ public class LevelFactory {
         level.setObjectives(new ArrayList<Objective>(Arrays.asList(
                 new Objective(level.getEndPos(), 30, 30, 7)
         )));
+
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
 
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
@@ -473,6 +529,12 @@ public class LevelFactory {
                 new Objective(level.getEndPos(), 30, 30, 8)
         )));
 
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
+
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
         }
@@ -522,6 +584,12 @@ public class LevelFactory {
         level.setObjectives(new ArrayList<Objective>(Arrays.asList(
                 new Objective(level.getEndPos(), 30, 30, 9)
         )));
+
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
 
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
@@ -584,6 +652,12 @@ public class LevelFactory {
                 new Objective(level.getEndPos(), 30, 30, 10)
         )));
 
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
+
         for (Objective objective : level.getObjectives()) {
             objective.setColor(new Color(255, 150, 191));
         }
@@ -591,8 +665,61 @@ public class LevelFactory {
 
         return level;
     }
-
+    // In Progress - Andre - Death and coins
     private static Level getLevel_10() {
-        return null;
+        Level level = new Level(new ArrayList<Block>(Arrays.asList(
+                // Walls
+                new Block(10, 10, Game.GRID_WIDTH, 10),
+                new Block(10, Game.GRID_HEIGHT, Game.GRID_WIDTH, 10),
+                new Block(10, 10, 10, Game.GRID_HEIGHT),
+                new Block(Game.GRID_WIDTH, 10, 10, Game.GRID_HEIGHT),
+                new Block(Game.GRID_WIDTH - 50, 10, 10, 50),
+                new Block(Game.GRID_WIDTH - 50, 60, 50, 10),
+                //Block()s
+                new Block(400, 300, 20, 100),
+                new Block(400, 500, 20, 100),
+                new Block(10, 500, 300, 20),
+                new Block(740, 120, 20, 480),
+                new Block(300, 300, 100, 20),
+                new Block(100, 200, 20, 200),
+                new Block(10, 120, 100, 20, true),
+                new Block(200, 120, 100, 20),
+                new Block(200, 10, 20, 120),
+                new Block(600, 20, 20, 60, true),
+                new Block(500, 200, 20, 100),
+                new Block(500, 200, 50, 20),
+                new Block(650, 300, 20, 100),
+                new Block(600, 200, 150, 20),
+                new Block(500, 500, 150, 20, true),
+                new Block(760, 140, 40, 20, false, true)
+        )), new ArrayList<Block>(Arrays.asList(
+                // Requirements
+                new Block(30, 50, 30, 30),
+                new Block(570, 330, 30, 30)
+        )));
+        level.setLevelType(LevelType.GRAVITY_CONTROL);
+        level.setLevelNumber(10);
+        level.setBackground(new Picture(10,10,"resources/default.png"));
+
+        level.setStartGravity(GravityDirectionType.DOWN);
+        level.setStartPos(new Vector(50, 550));
+        level.setEndPos(new Vector(765, 570));
+
+        level.setObjectives(new ArrayList<Objective>(Arrays.asList(
+                new Objective(level.getEndPos(), 30, 30, 11)
+        )));
+
+        if (level.getRequirements() != null) {
+            for (Block requirement : level.getRequirements()) {
+                requirement.setPicture(new Picture(requirement.getPosition().getX(), requirement.getPosition().getY(), "resources/beer.png"));
+            }
+        }
+
+        for (Objective objective : level.getObjectives()) {
+            objective.setColor(new Color(255, 150, 191));
+        }
+        level.getObjectives().get(0).setPicture(new Picture(level.getObjectives().get(0).getPosition().getX(), level.getObjectives().get(0).getPosition().getY(), "resources/baljeeta.png"));
+
+        return level;
     }/**/
 }

@@ -41,6 +41,13 @@ public class Level {
         this.completed = false;
     }
 
+    public Level(ArrayList<Block> walls, ArrayList<Block> requirements, ArrayList<Objective> objectives) {
+        this.walls = walls;
+        this.requirements = requirements;
+        this.objectives = objectives;
+        this.completed = false;
+    }
+
     //region Getters and Setters
 
     public LevelType getLevelType() {
