@@ -23,6 +23,7 @@ public class CollisionDetector {
         newBoundary.setPosition(newPosition);
         for (Objective objective : this.game.getLevel().getObjectives()) {
             if (player.getBoundary().contains(objective.getBoundary())) {
+                this.game.getWoman().play(true);
                 this.game.getLevel().setCompleted(true);
                 this.game.getLevel().setNextLevelNumber(objective.getNextLevelNumber());
             }
@@ -32,6 +33,7 @@ public class CollisionDetector {
                 if (newBoundary.contains(requirement.getBoundary())) {
                     requirement.setDestroyed(true);
                     requirement.delete();
+                    this.game.getBeerSound().play(true);
                 }
             }
         }

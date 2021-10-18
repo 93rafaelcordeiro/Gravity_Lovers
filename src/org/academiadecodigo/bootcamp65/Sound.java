@@ -10,7 +10,7 @@ public class Sound {
     private Clip clip;
     private URL soundURL;
 
-    public Sound(String path) throws IOException, UnsupportedAudioFileException {
+    public Sound(String path) {
         initClip(path);
     }
 
@@ -54,29 +54,25 @@ public class Sound {
         }
     }
 
-    private void initClip(String path) throws IOException, UnsupportedAudioFileException {
+    private void initClip(String path) {
 
         soundURL = Sound.class.getResource(path); //if loading from jar
-        File file=new File(path);
-        AudioInputStream inputStream = AudioSystem.getAudioInputStream(file);
+        AudioInputStream inputStream = null;
 
         try {
 
-           /* if (soundURL == null) {
+            if (soundURL == null) {
                 path = path.substring(1);
                 File file = new File(path);
                 soundURL = file.toURI().toURL(); //if executing on intellij
             }
 
-            inputStream = AudioSystem.getAudioInputStream(soundURL);*/
+            inputStream = AudioSystem.getAudioInputStream(soundURL);
             clip = AudioSystem.getClip();
             clip.open(inputStream);
 
-        } catch (LineUnavailableException | IOException ex) {
+        } catch (UnsupportedAudioFileException | LineUnavailableException | IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
 }
-
-
-
